@@ -6,7 +6,7 @@ pub struct RLS {
   p : Array[Array[Double]]
   /// Forgetting factor (0 < lambda <= 1)
   lambda : Double
-}
+} derive(ToJson, FromJson)
 
 ///|
 /// Create a new RLS model with `dim` features.

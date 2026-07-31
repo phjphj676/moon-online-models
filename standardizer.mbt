@@ -5,7 +5,7 @@ pub struct Standardizer {
   mut count : Double
   mean : Array[Double]
   m2 : Array[Double]
-}
+} derive(ToJson, FromJson)
 
 ///|
 /// Create a new feature standardizer for `dim` features.

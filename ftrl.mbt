@@ -14,7 +14,7 @@ pub struct FTRL {
   z : Array[Double]
   /// Sum of squared gradients (n)
   n : Array[Double]
-}
+} derive(ToJson, FromJson)
 
 ///|
 /// Create a new FTRL model with `dim` features.

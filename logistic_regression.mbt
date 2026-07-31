@@ -4,7 +4,7 @@ pub struct SGDLogisticRegression {
   weights : Array[Double]
   /// Learning rate
   alpha : Double
-}
+} derive(ToJson, FromJson)
 
 ///|
 /// Create a new SGD Logistic Regression model.
