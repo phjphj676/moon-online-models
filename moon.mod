@@ -7,5 +7,4 @@ keywords = ["machine-learning", "regression", "online-learning", "incremental-le
 description = "MoonBit online regression and incremental learning library, featuring Recursive Least Squares and Online Logistic Regression."
 
 options(
-  "preferred-target": "native",
 )

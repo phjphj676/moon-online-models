@@ -1,0 +1,212 @@
+{
+  "source_dir": "C:\\Users\\33046\\Desktop\\黑客松_moonbit\\猴哥\\moon-online-models",
+  "name": "Lyllyl789/moon-online-models",
+  "packages": [
+    {
+      "is-main": false,
+      "is-third-party": false,
+      "root-path": "C:\\Users\\33046\\Desktop\\黑客松_moonbit\\猴哥\\moon-online-models",
+      "root": "Lyllyl789/moon-online-models",
+      "rel": "",
+      "files": {
+        "C:\\Users\\33046\\Desktop\\黑客松_moonbit\\猴哥\\moon-online-models\\ftrl.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        },
+        "C:\\Users\\33046\\Desktop\\黑客松_moonbit\\猴哥\\moon-online-models\\logistic_regression.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        },
+        "C:\\Users\\33046\\Desktop\\黑客松_moonbit\\猴哥\\moon-online-models\\metrics.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        },
+        "C:\\Users\\33046\\Desktop\\黑客松_moonbit\\猴哥\\moon-online-models\\rls.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        },
+        "C:\\Users\\33046\\Desktop\\黑客松_moonbit\\猴哥\\moon-online-models\\standardizer.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        },
+        "C:\\Users\\33046\\Desktop\\黑客松_moonbit\\猴哥\\moon-online-models\\traits.mbt": {
+          "backend": [
+            "Wasm",
+            "WasmGC",
+            "Js",
+            "Native",
+            "LLVM"
+          ],
+          "optlevel": [
+            "Release",
+            "Debug"
+          ]
+        }
+      },
+      "wbtest-files": {},
+      "test-files": {},
+      "mbt-md-files": {},
+      "deps": [
+        {
+          "path": "moonbitlang/core/json",
+          "alias": "json",
+          "fspath": "C:\\Users\\33046\\.moon\\lib\\core\\json"
+        },
+        {
+          "path": "moonbitlang/core/math",
+          "alias": "math",
+          "fspath": "C:\\Users\\33046\\.moon\\lib\\core\\math"
+        },
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\33046\\.moon\\lib\\core\\prelude"
+        }
+      ],
+      "wbtest-deps": [
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\33046\\.moon\\lib\\core\\prelude"
+        }
+      ],
+      "test-deps": [
+        {
+          "path": "moonbitlang/core/prelude",
+          "alias": "prelude",
+          "fspath": "C:\\Users\\33046\\.moon\\lib\\core\\prelude"
+        }
+      ],
+      "artifact": "C:\\Users\\33046\\Desktop\\黑客松_moonbit\\猴哥\\moon-online-models\\_build\\native\\debug\\check\\moon-online-models.mi",
+      "check-command": [
+        "check",
+        "-error-format",
+        "json",
+        "C:\\Users\\33046\\Desktop\\黑客松_moonbit\\猴哥\\moon-online-models\\ftrl.mbt",
+        "C:\\Users\\33046\\Desktop\\黑客松_moonbit\\猴哥\\moon-online-models\\logistic_regression.mbt",
+        "C:\\Users\\33046\\Desktop\\黑客松_moonbit\\猴哥\\moon-online-models\\metrics.mbt",
+        "C:\\Users\\33046\\Desktop\\黑客松_moonbit\\猴哥\\moon-online-models\\rls.mbt",
+        "C:\\Users\\33046\\Desktop\\黑客松_moonbit\\猴哥\\moon-online-models\\standardizer.mbt",
+        "C:\\Users\\33046\\Desktop\\黑客松_moonbit\\猴哥\\moon-online-models\\traits.mbt",
+        "-o",
+        "C:\\Users\\33046\\Desktop\\黑客松_moonbit\\猴哥\\moon-online-models\\_build\\native\\debug\\check\\moon-online-models.mi",
+        "-pkg",
+        "Lyllyl789/moon-online-models",
+        "-std-path",
+        "C:\\Users\\33046\\.moon\\lib\\core\\_build\\native\\release\\bundle",
+        "-i",
+        "C:\\Users\\33046\\.moon\\lib\\core\\_build\\native\\release\\bundle\\json\\json.mi:json",
+        "-i",
+        "C:\\Users\\33046\\.moon\\lib\\core\\_build\\native\\release\\bundle\\math\\math.mi:math",
+        "-i",
+        "C:\\Users\\33046\\.moon\\lib\\core\\_build\\native\\release\\bundle\\prelude\\prelude.mi:prelude",
+        "-pkg-sources",
+        "Lyllyl789/moon-online-models:C:\\Users\\33046\\Desktop\\黑客松_moonbit\\猴哥\\moon-online-models",
+        "-target",
+        "native",
+        "-workspace-path",
+        "C:\\Users\\33046\\Desktop\\黑客松_moonbit\\猴哥\\moon-online-models",
+        "-all-pkgs",
+        "C:\\Users\\33046\\Desktop\\黑客松_moonbit\\猴哥\\moon-online-models\\_build\\native\\debug\\check\\all_pkgs.json"
+      ],
+      "wbtest-check-command": null,
+      "test-check-command": [
+        "check",
+        "-error-format",
+        "json",
+        "-doctest-only",
+        "C:\\Users\\33046\\Desktop\\黑客松_moonbit\\猴哥\\moon-online-models\\ftrl.mbt",
+        "-doctest-only",
+        "C:\\Users\\33046\\Desktop\\黑客松_moonbit\\猴哥\\moon-online-models\\logistic_regression.mbt",
+        "-doctest-only",
+        "C:\\Users\\33046\\Desktop\\黑客松_moonbit\\猴哥\\moon-online-models\\metrics.mbt",
+        "-doctest-only",
+        "C:\\Users\\33046\\Desktop\\黑客松_moonbit\\猴哥\\moon-online-models\\rls.mbt",
+        "-doctest-only",
+        "C:\\Users\\33046\\Desktop\\黑客松_moonbit\\猴哥\\moon-online-models\\standardizer.mbt",
+        "-doctest-only",
+        "C:\\Users\\33046\\Desktop\\黑客松_moonbit\\猴哥\\moon-online-models\\traits.mbt",
+        "-include-doctests",
+        "-o",
+        "C:\\Users\\33046\\Desktop\\黑客松_moonbit\\猴哥\\moon-online-models\\_build\\native\\debug\\check\\moon-online-models.blackbox_test.mi",
+        "-pkg",
+        "Lyllyl789/moon-online-models_blackbox_test",
+        "-std-path",
+        "C:\\Users\\33046\\.moon\\lib\\core\\_build\\native\\release\\bundle",
+        "-i",
+        "C:\\Users\\33046\\.moon\\lib\\core\\_build\\native\\release\\bundle\\json\\json.mi:json",
+        "-i",
+        "C:\\Users\\33046\\.moon\\lib\\core\\_build\\native\\release\\bundle\\math\\math.mi:math",
+        "-i",
+        "C:\\Users\\33046\\Desktop\\黑客松_moonbit\\猴哥\\moon-online-models\\_build\\native\\debug\\check\\moon-online-models.mi:moon-online-models",
+        "-i",
+        "C:\\Users\\33046\\.moon\\lib\\core\\_build\\native\\release\\bundle\\prelude\\prelude.mi:prelude",
+        "-pkg-sources",
+        "Lyllyl789/moon-online-models_blackbox_test:C:\\Users\\33046\\Desktop\\黑客松_moonbit\\猴哥\\moon-online-models",
+        "-target",
+        "native",
+        "-blackbox-test",
+        "-workspace-path",
+        "C:\\Users\\33046\\Desktop\\黑客松_moonbit\\猴哥\\moon-online-models",
+        "-all-pkgs",
+        "C:\\Users\\33046\\Desktop\\黑客松_moonbit\\猴哥\\moon-online-models\\_build\\native\\debug\\check\\all_pkgs.json"
+      ],
+      "supported-targets": [
+        "Wasm",
+        "WasmGC",
+        "Js",
+        "Native",
+        "LLVM"
+      ]
+    }
+  ],
+  "deps": [],
+  "backend": "native",
+  "opt_level": "debug",
+  "source": null
+}
