@@ -1,0 +1,72 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "Lyllyl789/moon-online-models"
+
+import {
+  "moonbitlang/core/json",
+}
+
+// Values
+
+// Errors
+
+// Types and methods
+pub struct FTRL {
+  alpha : Double
+  beta : Double
+  l1 : Double
+  l2 : Double
+  z : Array[Double]
+  n : Array[Double]
+} derive(ToJson, @json.FromJson)
+pub fn FTRL::new(Int, alpha? : Double, beta? : Double, l1? : Double, l2? : Double) -> Self
+pub fn FTRL::predict(Self, Array[Double]) -> Double
+pub fn FTRL::update(Self, Array[Double], Double) -> Unit
+
+pub struct MetricsTracker {
+  mut count : Double
+  mut sum_squared_error : Double
+  mut sum_log_loss : Double
+}
+pub fn MetricsTracker::log_loss(Self) -> Double
+pub fn MetricsTracker::mse(Self) -> Double
+pub fn MetricsTracker::new() -> Self
+pub fn MetricsTracker::update(Self, Double, Double) -> Unit
+
+pub struct RLS {
+  weights : Array[Double]
+  p : Array[Array[Double]]
+  lambda : Double
+} derive(ToJson, @json.FromJson)
+pub fn RLS::new(Int, lambda? : Double, alpha? : Double) -> Self
+pub fn RLS::predict(Self, Array[Double]) -> Double
+pub fn RLS::update(Self, Array[Double], Double) -> Unit
+
+pub struct SGDLogisticRegression {
+  weights : Array[Double]
+  alpha : Double
+} derive(ToJson, @json.FromJson)
+pub fn SGDLogisticRegression::new(Int, alpha? : Double) -> Self
+pub fn SGDLogisticRegression::predict(Self, Array[Double]) -> Double
+pub fn SGDLogisticRegression::update(Self, Array[Double], Double) -> Unit
+
+pub struct Standardizer {
+  mut count : Double
+  mean : Array[Double]
+  m2 : Array[Double]
+} derive(ToJson, @json.FromJson)
+pub fn Standardizer::new(Int) -> Self
+pub fn Standardizer::update_and_transform(Self, Array[Double]) -> Array[Double]
+
+// Type aliases
+
+// Traits
+pub trait OnlineLearner {
+  fn update(Self, Array[Double], Double) -> Unit
+  fn predict(Self, Array[Double]) -> Double
+}
+
+pub trait Snapshot {
+  fn to_bytes(Self) -> Bytes
+  fn from_bytes(Self, Bytes) -> Bool
+}
+
