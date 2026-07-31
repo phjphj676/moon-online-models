@@ -1,1 +1,3 @@
-// Empty package for now
+import {
+  "moonbitlang/core/math"
+}
