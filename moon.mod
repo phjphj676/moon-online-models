@@ -1,10 +1,10 @@
-name = "Lyllyl789/moon-online-models"
+name = "phjphj676/moon-online-models"
 
 version = "0.1.0"
 
 readme = "README.md"
 
-repository = "https://github.com/Lyllyl789/moon-online-models"
+repository = "https://github.com/phjphj676/moon-online-models"
 
 license = "Apache-2.0"
 

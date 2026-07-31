@@ -14,7 +14,7 @@ Moon Online Models (`moon-online-models`) is a MoonBit library for online regres
 
 Add the dependency to your project:
 ```bash
-moon add Lyllyl789/moon-online-models
+moon add phjphj676/moon-online-models
 ```
 
 ### Example: FTRL Logistic Regression
