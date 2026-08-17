@@ -23,7 +23,7 @@ pub fn Standardizer::update_and_transform(
   self.count += 1.0
   let res = Array::make(dim, 0.0)
   for i in 0..<dim {
-    let x = features[i]
+    let x = features.get(i).unwrap_or(0.0)
     let delta = x - self.mean[i]
     self.mean[i] += delta / self.count
     let delta2 = x - self.mean[i]
@@ -38,4 +38,34 @@ pub fn Standardizer::update_and_transform(
     res[i] = (x - self.mean[i]) / std_dev
   }
   res
+}
+
+///|
+/// Return a copy of the current running means.
+pub fn Standardizer::mean(self : Standardizer) -> Array[Double] {
+  copy_vector(self.mean)
+}
+
+///|
+/// Return the unbiased running variance for every feature.
+pub fn Standardizer::variance(self : Standardizer) -> Array[Double] {
+  Array::makei(self.m2.length(), i => {
+    if self.count > 1.0 {
+      self.m2[i] / (self.count - 1.0)
+    } else {
+      0.0
+    }
+  })
+}
+
+///|
+pub fn Standardizer::count(self : Standardizer) -> Double {
+  self.count
+}
+
+///|
+pub fn Standardizer::reset(self : Standardizer) -> Unit {
+  self.count = 0.0
+  self.mean.fill(0.0)
+  self.m2.fill(0.0)
 }
