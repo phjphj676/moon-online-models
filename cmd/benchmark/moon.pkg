@@ -1,0 +1,5 @@
+import {
+  "phjphj676/moon-online-models" @models,
+}
+
+pkgtype(kind: "executable")
