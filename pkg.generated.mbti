@@ -1,15 +1,878 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "Lyllyl789/moon-online-models"
+package "phjphj676/moon-online-models"
 
 import {
+  "moonbitlang/core/debug",
   "moonbitlang/core/json",
 }
 
 // Values
+pub fn absolute_error(Double, Double) -> Double
+
+pub fn add_scaled_in_place(Array[Double], Array[Double], Double) -> Unit
+
+pub fn add_values(Array[Double], Array[Double]) -> Array[Double]
+
+pub fn alert_condition_catalog() -> Array[AlertCondition]
+
+pub fn alert_severity_catalog() -> Array[AlertSeverity]
+
+pub fn all_close(Array[Double], Array[Double], tolerance? : Double) -> Bool
+
+pub fn append_interactions(Array[Double], include_diagonal? : Bool) -> Array[Double]
+
+pub fn argmax(Array[Double]) -> Int?
+
+pub fn attribution_sum(Array[FeatureAttribution]) -> Double
+
+pub fn audit_action_catalog() -> Array[AuditAction]
+
+pub fn binary_cross_entropy(Double, Double) -> Double
+
+pub fn clamp(Double, Double, Double) -> Double
+
+pub fn clamp_probability(Double) -> Double
+
+pub fn copy_vector(Array[Double]) -> Array[Double]
+
+pub fn cosine_similarity(Array[Double], Array[Double]) -> Double
+
+pub fn cost_matrix(ClassCost) -> Array[Array[Double]]
+
+pub fn cost_sensitive_decision(Double, ClassCost) -> Bool
+
+pub fn cross_feature(String, String, separator? : String) -> String
+
+pub fn csv_escape(String, options? : CsvOptions) -> String
+
+pub fn csv_write_row(Array[String], options? : CsvOptions) -> String
+
+pub fn cumulative_sum(Array[Double]) -> Array[Double]
+
+pub fn deployment_state_catalog() -> Array[DeploymentState]
+
+pub fn dot_product(Array[Double], Array[Double]) -> Double
+
+pub fn dot_product_checked(Array[Double], Array[Double]) -> Double?
+
+pub fn evaluate_binary(AdagradLogisticRegression, DataBatch) -> OnlineEvaluationSession
+
+pub fn evaluate_regression(OnlineRidgeRegression, DataBatch) -> OnlineEvaluationSession
+
+pub fn expected_binary_cost(Double, Double, Double) -> Double
+
+pub fn explain_linear(Array[Double], Array[Double], top_k? : Int) -> Array[FeatureAttribution]
+
+pub fn explain_sparse(SparseVector, SparseVector, top_k? : Int) -> Array[FeatureAttribution]
+
+pub fn generate_feature_crosses(Array[String], order? : Int) -> Array[String]
+
+pub fn hadamard_product(Array[Double], Array[Double]) -> Array[Double]
+
+pub fn hash_feature(String, Int) -> Int
+
+pub fn hash_feature_with_sign(String, Int) -> SparseEntry
+
+pub fn hinge_loss(Double, Double) -> Double
+
+pub fn is_non_decreasing(Array[Double]) -> Bool
+
+pub fn l1_norm(Array[Double]) -> Double
+
+pub fn logit(Double) -> Double
+
+pub fn logits_to_probability(Double) -> Double
+
+pub fn loss_gradient(LossKind, Double, Double, parameter? : Double) -> Double
+
+pub fn loss_gradient_vector(LossKind, Array[Double], Array[Double]) -> Array[Double]
+
+pub fn loss_kind_catalog() -> Array[LossKind]
+
+pub fn loss_value(LossKind, Double, Double, parameter? : Double) -> Double
+
+pub fn make_fold(DataBatch, Int, Int) -> CrossValidationFold
+
+pub fn make_snapshot(String, String, String) -> SnapshotEnvelope
+
+pub fn matrix_row_sums(Matrix) -> Array[Double]
+
+pub fn max_abs(Array[Double]) -> Double
+
+pub fn mean_values(Array[Double]) -> Double
+
+pub fn moving_average(Double, Double, Double) -> Double
+
+pub fn normalize_l2(Array[Double]) -> Array[Double]
+
+pub fn one_hot(Int, Int) -> Array[Double]
+
+pub fn outer_product(Array[Double], Array[Double]) -> Matrix
+
+pub fn pairwise_interactions(Array[Double], include_diagonal? : Bool) -> Array[Double]
+
+pub fn polynomial_features(Array[Double], Int) -> Array[Double]
+
+pub fn probabilities_from_logits(Array[Double]) -> Array[Double]
+
+pub fn probability_to_logit(Double) -> Double
+
+pub fn r2_score(Array[Double], Array[Double]) -> Double
+
+pub fn rank_one_update(Matrix, Array[Double], Double) -> Unit
+
+pub fn safe_threshold(Double) -> Double
+
+pub fn sample_indices(Int, seed? : UInt64) -> Array[Int]
+
+pub fn scale_values(Array[Double], Double) -> Array[Double]
+
+pub fn sigmoid(Double) -> Double
+
+pub fn smooth_l1_loss(Double, beta? : Double) -> Double
+
+pub fn snapshot_checksum(String) -> String
+
+pub fn softplus(Double) -> Double
+
+pub fn split_indices(Int, train_ratio? : Double, seed? : UInt64) -> (Array[Int], Array[Int])
+
+pub fn squared_error(Double, Double) -> Double
+
+pub fn squared_norm(Array[Double]) -> Double
+
+pub fn standard_deviation(Array[Double]) -> Double
+
+pub fn subtract_scaled_in_place(Array[Double], Array[Double], Double) -> Unit
+
+pub fn subtract_values(Array[Double], Array[Double]) -> Array[Double]
+
+pub fn sum_values(Array[Double]) -> Double
+
+pub fn threshold_is_valid(Double) -> Bool
+
+pub fn top_index(Array[Double], Int) -> Int?
+
+pub fn train_adagrad(AdagradLogisticRegression, DataBatch, TrainingReport) -> TrainingReport
+
+pub fn train_ridge(OnlineRidgeRegression, DataBatch, TrainingReport) -> TrainingReport
+
+pub fn valid_dimension(Int) -> Bool
+
+pub fn validate_dimension(Int) -> ValidationReport
+
+pub fn validate_label(Double) -> ValidationReport
+
+pub fn validate_probability(Double) -> ValidationReport
+
+pub fn validate_vector(Array[Double], Int) -> ValidationReport
+
+pub fn variance_values(Array[Double]) -> Double
+
+pub fn verify_snapshot(SnapshotEnvelope) -> Bool
+
+pub fn weighted_loss(LossKind, Array[Double], Array[Double], weights? : Array[Double]) -> Double
+
+pub fn weighted_mean(Array[Double], Array[Double]) -> Double
+
+pub fn weighted_variance(Array[Double], Array[Double]) -> Double
 
 // Errors
 
 // Types and methods
+pub struct AdagradLinearRegression {
+  weights : Array[Double]
+  accumulator : Array[Double]
+  learning_rate : Double
+  epsilon : Double
+  l2 : Double
+  mut steps : Int
+}
+pub fn AdagradLinearRegression::dimension(Self) -> Int
+pub fn AdagradLinearRegression::loss(Self, Array[Double], Double) -> Double
+pub fn AdagradLinearRegression::new(Int, learning_rate? : Double, epsilon? : Double, l2? : Double) -> Self
+pub fn AdagradLinearRegression::predict(Self, Array[Double]) -> Double
+pub fn AdagradLinearRegression::reset(Self) -> Unit
+pub fn AdagradLinearRegression::residual(Self, Array[Double], Double) -> Double
+pub fn AdagradLinearRegression::steps(Self) -> Int
+pub fn AdagradLinearRegression::update(Self, Array[Double], Double) -> Unit
+pub fn AdagradLinearRegression::weights(Self) -> Array[Double]
+
+pub struct AdagradLogisticRegression {
+  weights : Array[Double]
+  accumulator : Array[Double]
+  learning_rate : Double
+  epsilon : Double
+  l1 : Double
+  l2 : Double
+  mut steps : Int
+  mut seen : Double
+}
+pub fn AdagradLogisticRegression::accumulator(Self) -> Array[Double]
+pub fn AdagradLogisticRegression::dimension(Self) -> Int
+pub fn AdagradLogisticRegression::feature_importance(Self) -> Array[Double]
+pub fn AdagradLogisticRegression::logit(Self, Array[Double]) -> Double
+pub fn AdagradLogisticRegression::loss(Self, Array[Double], Double) -> Double
+pub fn AdagradLogisticRegression::new(Int, learning_rate? : Double, epsilon? : Double, l1? : Double, l2? : Double) -> Self
+pub fn AdagradLogisticRegression::predict(Self, Array[Double]) -> Double
+pub fn AdagradLogisticRegression::predict_label(Self, Array[Double], threshold? : Double) -> Double
+pub fn AdagradLogisticRegression::regularization(Self) -> Double
+pub fn AdagradLogisticRegression::reset(Self) -> Unit
+pub fn AdagradLogisticRegression::seen(Self) -> Double
+pub fn AdagradLogisticRegression::sparsity(Self, tolerance? : Double) -> Double
+pub fn AdagradLogisticRegression::steps(Self) -> Int
+pub fn AdagradLogisticRegression::update(Self, Array[Double], Double) -> Unit
+pub fn AdagradLogisticRegression::update_weighted(Self, Array[Double], Double, Double) -> Unit
+pub fn AdagradLogisticRegression::weights(Self) -> Array[Double]
+
+pub struct AdagradOptimizer {
+  learning_rate : Double
+  epsilon : Double
+  schedule : LearningRateSchedule
+  accumulator : Array[Double]
+  clipper : GradientClipper
+  mut step_count : Int
+  statistics : OptimizerStatistics
+}
+pub fn AdagradOptimizer::accumulated(Self) -> Array[Double]
+pub fn AdagradOptimizer::apply(Self, Array[Double], Array[Double]) -> Unit
+pub fn AdagradOptimizer::dimension(Self) -> Int
+pub fn AdagradOptimizer::new(Int, learning_rate? : Double, epsilon? : Double, schedule? : LearningRateSchedule, clipper? : GradientClipper) -> Self
+pub fn AdagradOptimizer::rate(Self) -> Double
+pub fn AdagradOptimizer::reset(Self) -> Unit
+pub fn AdagradOptimizer::statistics(Self) -> OptimizerStatistics
+pub fn AdagradOptimizer::step_count(Self) -> Int
+pub fn AdagradOptimizer::update(Self, Array[Double]) -> Array[Double]
+
+pub struct AdamOptimizer {
+  learning_rate : Double
+  beta1 : Double
+  beta2 : Double
+  epsilon : Double
+  first_moment : Array[Double]
+  second_moment : Array[Double]
+  clipper : GradientClipper
+  mut step_count : Int
+}
+pub fn AdamOptimizer::apply(Self, Array[Double], Array[Double]) -> Unit
+pub fn AdamOptimizer::first_moment(Self) -> Array[Double]
+pub fn AdamOptimizer::new(Int, learning_rate? : Double, beta1? : Double, beta2? : Double, epsilon? : Double, clipper? : GradientClipper) -> Self
+pub fn AdamOptimizer::reset(Self) -> Unit
+pub fn AdamOptimizer::second_moment(Self) -> Array[Double]
+pub fn AdamOptimizer::step_count(Self) -> Int
+pub fn AdamOptimizer::update(Self, Array[Double]) -> Array[Double]
+
+pub(all) enum AlertCondition {
+  GreaterThan
+  LessThan
+  OutsideRange
+  Stale
+} derive(Eq, @debug.Debug)
+
+pub struct AlertRule {
+  name : String
+  metric : String
+  condition : AlertCondition
+  lower : Double
+  upper : Double
+  severity : AlertSeverity
+  cooldown : Int64
+  mut last_alert : Int64?
+}
+pub fn AlertRule::evaluate(Self, MetricSnapshot, Int64) -> Bool
+pub fn AlertRule::greater(String, String, Double, severity? : AlertSeverity, cooldown? : Int64) -> Self
+pub fn AlertRule::less(String, String, Double, severity? : AlertSeverity, cooldown? : Int64) -> Self
+pub fn AlertRule::metric(Self) -> String
+pub fn AlertRule::name(Self) -> String
+pub fn AlertRule::outside(String, String, Double, Double, severity? : AlertSeverity, cooldown? : Int64) -> Self
+pub fn AlertRule::reset(Self) -> Unit
+pub fn AlertRule::severity(Self) -> AlertSeverity
+pub fn AlertRule::stale(String, String, Int64, severity? : AlertSeverity) -> Self
+
+pub(all) enum AlertSeverity {
+  Info
+  Warn
+  Critical
+} derive(Eq, @debug.Debug)
+
+pub struct AucTracker {
+  scores : Array[Double]
+  labels : Array[Bool]
+}
+pub fn AucTracker::auc(Self) -> Double
+pub fn AucTracker::negative_count(Self) -> Int
+pub fn AucTracker::new() -> Self
+pub fn AucTracker::positive_count(Self) -> Int
+pub fn AucTracker::reset(Self) -> Unit
+pub fn AucTracker::size(Self) -> Int
+pub fn AucTracker::update(Self, Double, Double) -> Unit
+
+pub(all) enum AuditAction {
+  Train
+  Predict
+  Promote
+  Rollback
+  Reject
+  Snapshot
+} derive(Eq, @debug.Debug)
+
+pub struct AuditRecord {
+  event_id : String
+  actor : String
+  action : AuditAction
+  model : String
+  version : String
+  timestamp : Int64
+  detail : String
+  success : Bool
+}
+pub fn AuditRecord::action(Self) -> AuditAction
+pub fn AuditRecord::actor(Self) -> String
+pub fn AuditRecord::detail(Self) -> String
+pub fn AuditRecord::event_id(Self) -> String
+pub fn AuditRecord::model(Self) -> String
+pub fn AuditRecord::new(String, String, AuditAction, String, String, Int64, detail? : String, success? : Bool) -> Self
+pub fn AuditRecord::success(Self) -> Bool
+pub fn AuditRecord::timestamp(Self) -> Int64
+pub fn AuditRecord::version(Self) -> String
+
+pub struct AuditTrail {
+  capacity : Int
+  records : Array[AuditRecord]
+  ids : Map[String, Bool]
+  mut accepted : Int
+  mut duplicates : Int
+  mut evicted : Int
+}
+pub fn AuditTrail::accepted(Self) -> Int
+pub fn AuditTrail::append(Self, AuditRecord) -> Bool
+pub fn AuditTrail::clear(Self) -> Unit
+pub fn AuditTrail::count_action(Self, AuditAction) -> Int
+pub fn AuditTrail::duplicates(Self) -> Int
+pub fn AuditTrail::evicted(Self) -> Int
+pub fn AuditTrail::failed(Self) -> Int
+pub fn AuditTrail::find(Self, String) -> AuditRecord?
+pub fn AuditTrail::new(capacity? : Int) -> Self
+pub fn AuditTrail::records(Self) -> Array[AuditRecord]
+pub fn AuditTrail::size(Self) -> Int
+
+pub struct BatchNormalizer {
+  moments : VectorMoments
+  dimension : Int
+  mut batches : Int
+}
+pub fn BatchNormalizer::batches(Self) -> Int
+pub fn BatchNormalizer::fit(Self, DataBatch) -> Unit
+pub fn BatchNormalizer::mean(Self) -> Array[Double]
+pub fn BatchNormalizer::new(Int) -> Self
+pub fn BatchNormalizer::reset(Self) -> Unit
+pub fn BatchNormalizer::transform(Self, DataBatch) -> DataBatch
+pub fn BatchNormalizer::variance(Self) -> Array[Double]
+
+pub struct BernoulliSampler {
+  probability : Double
+  rng : DeterministicRng
+  mut accepted : Int
+  mut seen : Int
+}
+pub fn BernoulliSampler::accept(Self) -> Bool
+pub fn BernoulliSampler::accepted(Self) -> Int
+pub fn BernoulliSampler::new(Double, seed? : UInt64) -> Self
+pub fn BernoulliSampler::probability(Self) -> Double
+pub fn BernoulliSampler::rate(Self) -> Double
+pub fn BernoulliSampler::reset(Self) -> Unit
+pub fn BernoulliSampler::seen(Self) -> Int
+
+pub struct BootstrapCounter {
+  counts : Array[Int]
+  rng : DeterministicRng
+  mut rounds : Int
+}
+pub fn BootstrapCounter::counts(Self) -> Array[Int]
+pub fn BootstrapCounter::coverage(Self) -> Double
+pub fn BootstrapCounter::draw(Self) -> Array[Int]
+pub fn BootstrapCounter::new(Int, seed? : UInt64) -> Self
+pub fn BootstrapCounter::reset(Self) -> Unit
+pub fn BootstrapCounter::rounds(Self) -> Int
+
+pub struct CalibrationBin {
+  mut count : Double
+  mut predicted : Double
+  mut observed : Double
+}
+pub fn CalibrationBin::count(Self) -> Double
+pub fn CalibrationBin::mean_observed(Self) -> Double
+pub fn CalibrationBin::mean_prediction(Self) -> Double
+pub fn CalibrationBin::new() -> Self
+pub fn CalibrationBin::update(Self, Double, Double) -> Unit
+
+pub struct CalibrationTracker {
+  bins : Array[CalibrationBin]
+  mut total : Double
+  mut weighted_gap : Double
+}
+pub fn CalibrationTracker::bins(Self) -> Array[CalibrationBin]
+pub fn CalibrationTracker::ece(Self) -> Double
+pub fn CalibrationTracker::mce(Self) -> Double
+pub fn CalibrationTracker::new(bin_count? : Int) -> Self
+pub fn CalibrationTracker::reset(Self) -> Unit
+pub fn CalibrationTracker::update(Self, Double, Double) -> Unit
+
+pub struct CanaryExperiment {
+  name : String
+  baseline : String
+  candidate : String
+  target_samples : Int
+  mut baseline_metric : Double
+  mut candidate_metric : Double
+  mut samples : Int
+}
+pub fn CanaryExperiment::baseline(Self) -> Double
+pub fn CanaryExperiment::candidate(Self) -> Double
+pub fn CanaryExperiment::complete(Self) -> Bool
+pub fn CanaryExperiment::improvement(Self) -> Double
+pub fn CanaryExperiment::new(String, String, String, target_samples? : Int) -> Self
+pub fn CanaryExperiment::observe(Self, Double, Double) -> Unit
+pub fn CanaryExperiment::samples(Self) -> Int
+pub fn CanaryExperiment::winner(Self) -> String
+
+pub struct CategoricalEncoder {
+  values : Map[String, Int]
+  mut next_index : Int
+  unknown_index : Int?
+}
+pub fn CategoricalEncoder::contains(Self, String) -> Bool
+pub fn CategoricalEncoder::dimension(Self) -> Int
+pub fn CategoricalEncoder::encode(Self, String) -> Int
+pub fn CategoricalEncoder::entries(Self) -> Array[(String, Int)]
+pub fn CategoricalEncoder::new(unknown_index? : Int) -> Self
+pub fn CategoricalEncoder::reset(Self) -> Unit
+
+pub struct ChangePointDetector {
+  short : SequenceWindow
+  long : SequenceWindow
+  threshold : Double
+  mut changes : Int
+  mut last_score : Double
+}
+pub fn ChangePointDetector::changes(Self) -> Int
+pub fn ChangePointDetector::new(short_window? : Int, long_window? : Int, threshold? : Double) -> Self
+pub fn ChangePointDetector::observe(Self, Double) -> Bool
+pub fn ChangePointDetector::reset(Self) -> Unit
+pub fn ChangePointDetector::score(Self) -> Double
+
+pub struct ClassCost {
+  false_positive : Double
+  false_negative : Double
+  true_positive : Double
+  true_negative : Double
+}
+pub fn ClassCost::balanced_threshold(Self) -> Double
+pub fn ClassCost::cost(Self, Double, Double, Double) -> Double
+pub fn ClassCost::expected_cost(Self, Double, Double) -> Double
+pub fn ClassCost::negative_weight(Self) -> Double
+pub fn ClassCost::new(false_positive? : Double, false_negative? : Double, true_positive? : Double, true_negative? : Double) -> Self
+pub fn ClassCost::positive_weight(Self) -> Double
+
+pub struct ClassCountTracker {
+  counts : Array[Int]
+}
+pub fn ClassCountTracker::count(Self, Int) -> Int
+pub fn ClassCountTracker::counts(Self) -> Array[Int]
+pub fn ClassCountTracker::new(Int) -> Self
+pub fn ClassCountTracker::observe(Self, Int) -> Bool
+pub fn ClassCountTracker::prior(Self, Int, smoothing? : Double) -> Double
+pub fn ClassCountTracker::priors(Self, smoothing? : Double) -> Array[Double]
+pub fn ClassCountTracker::total(Self) -> Int
+
+pub struct ClickThroughRateTracker {
+  mut impressions : Double
+  mut clicks : Double
+  mut predicted_sum : Double
+  mut squared_calibration_error : Double
+}
+pub fn ClickThroughRateTracker::brier(Self) -> Double
+pub fn ClickThroughRateTracker::ctr(Self) -> Double
+pub fn ClickThroughRateTracker::impressions(Self) -> Double
+pub fn ClickThroughRateTracker::new() -> Self
+pub fn ClickThroughRateTracker::predicted_ctr(Self) -> Double
+pub fn ClickThroughRateTracker::reset(Self) -> Unit
+pub fn ClickThroughRateTracker::update(Self, Double, Bool, weight? : Double) -> Unit
+
+pub struct ConformalInterval {
+  residuals : Array[Double]
+  capacity : Int
+  confidence : Double
+  mut seen : Int
+}
+pub fn ConformalInterval::confidence(Self) -> Double
+pub fn ConformalInterval::coverage(Self, Double, Double) -> Bool
+pub fn ConformalInterval::interval(Self, Double) -> (Double, Double)
+pub fn ConformalInterval::new(capacity? : Int, confidence? : Double) -> Self
+pub fn ConformalInterval::observe(Self, Double, Double) -> Unit
+pub fn ConformalInterval::radius(Self) -> Double
+pub fn ConformalInterval::reset(Self) -> Unit
+pub fn ConformalInterval::seen(Self) -> Int
+pub fn ConformalInterval::size(Self) -> Int
+
+pub struct ConfusionMatrix {
+  mut true_positive : Double
+  mut false_positive : Double
+  mut true_negative : Double
+  mut false_negative : Double
+}
+pub fn ConfusionMatrix::accuracy(Self) -> Double
+pub fn ConfusionMatrix::balanced_accuracy(Self) -> Double
+pub fn ConfusionMatrix::f1(Self) -> Double
+pub fn ConfusionMatrix::false_negative_count(Self) -> Double
+pub fn ConfusionMatrix::fp(Self) -> Double
+pub fn ConfusionMatrix::mcc(Self) -> Double
+pub fn ConfusionMatrix::merge(Self, Self) -> Unit
+pub fn ConfusionMatrix::new() -> Self
+pub fn ConfusionMatrix::precision(Self) -> Double
+pub fn ConfusionMatrix::recall(Self) -> Double
+pub fn ConfusionMatrix::reset(Self) -> Unit
+pub fn ConfusionMatrix::specificity(Self) -> Double
+pub fn ConfusionMatrix::tn(Self) -> Double
+pub fn ConfusionMatrix::total(Self) -> Double
+pub fn ConfusionMatrix::tp(Self) -> Double
+pub fn ConfusionMatrix::update(Self, Double, Double, threshold? : Double) -> Unit
+
+pub struct CostSensitiveEvaluator {
+  costs : ClassCost
+  mut total : Double
+  mut count : Int
+}
+pub fn CostSensitiveEvaluator::count(Self) -> Int
+pub fn CostSensitiveEvaluator::mean(Self) -> Double
+pub fn CostSensitiveEvaluator::new(costs? : ClassCost) -> Self
+pub fn CostSensitiveEvaluator::observe(Self, Double, Double, Double) -> Double
+pub fn CostSensitiveEvaluator::reset(Self) -> Unit
+pub fn CostSensitiveEvaluator::total(Self) -> Double
+
+pub struct CrossValidationFold {
+  train : DataBatch
+  validation : DataBatch
+  index : Int
+}
+pub fn CrossValidationFold::index(Self) -> Int
+pub fn CrossValidationFold::train(Self) -> DataBatch
+pub fn CrossValidationFold::validation(Self) -> DataBatch
+
+pub struct CsvOptions {
+  separator : Char
+  quote : Char
+  escape : Char
+  trim_fields : Bool
+  skip_empty : Bool
+}
+pub fn CsvOptions::new(separator? : Char, quote? : Char, escape? : Char, trim_fields? : Bool, skip_empty? : Bool) -> Self
+pub fn CsvOptions::parse_line(Self, String) -> Array[String]
+pub fn CsvOptions::parse_lines(Self, String) -> Array[Array[String]]
+pub fn CsvOptions::separator(Self) -> Char
+
+pub struct CumulativeSumDetector {
+  target : Double
+  allowance : Double
+  threshold : Double
+  mut positive : Double
+  mut negative : Double
+}
+pub fn CumulativeSumDetector::negative(Self) -> Double
+pub fn CumulativeSumDetector::new(target? : Double, allowance? : Double, threshold? : Double) -> Self
+pub fn CumulativeSumDetector::positive(Self) -> Double
+pub fn CumulativeSumDetector::reset(Self) -> Unit
+pub fn CumulativeSumDetector::update(Self, Double) -> Bool
+
+pub struct DataBatch {
+  features : Array[Array[Double]]
+  labels : Array[Double]
+  weights : Array[Double]
+}
+pub fn DataBatch::add(Self, Array[Double], Double, weight? : Double) -> Bool
+pub fn DataBatch::dimension(Self) -> Int
+pub fn DataBatch::features(Self) -> Array[Array[Double]]
+pub fn DataBatch::from_arrays(Array[Array[Double]], Array[Double]) -> Self
+pub fn DataBatch::labels(Self) -> Array[Double]
+pub fn DataBatch::new(dimension? : Int) -> Self
+pub fn DataBatch::shuffle(Self, (Int) -> Int) -> Unit
+pub fn DataBatch::size(Self) -> Int
+pub fn DataBatch::slice(Self, Int, Int) -> Self
+pub fn DataBatch::validate(Self) -> ValidationReport
+pub fn DataBatch::weights(Self) -> Array[Double]
+
+pub struct DataLineage {
+  nodes : Map[String, LineageNode]
+  edges : Map[String, Array[String]]
+  mut registrations : Int
+}
+pub fn DataLineage::clear(Self) -> Unit
+pub fn DataLineage::connect(Self, String, String) -> Bool
+pub fn DataLineage::inputs(Self, String) -> Array[String]
+pub fn DataLineage::new() -> Self
+pub fn DataLineage::node(Self, String) -> LineageNode?
+pub fn DataLineage::register(Self, LineageNode) -> Bool
+pub fn DataLineage::registrations(Self) -> Int
+pub fn DataLineage::upstream(Self, String) -> Array[String]
+
+pub struct DataQualityReport {
+  mut rows : Int
+  mut accepted : Int
+  mut rejected : Int
+  mut missing_values : Int
+  mut dimension_errors : Int
+  mut out_of_range : Int
+}
+pub fn DataQualityReport::acceptance_rate(Self) -> Double
+pub fn DataQualityReport::accepted(Self) -> Int
+pub fn DataQualityReport::dimension_errors(Self) -> Int
+pub fn DataQualityReport::missing_values(Self) -> Int
+pub fn DataQualityReport::new() -> Self
+pub fn DataQualityReport::observe(Self, Bool, Int, Bool, Bool) -> Unit
+pub fn DataQualityReport::out_of_range(Self) -> Int
+pub fn DataQualityReport::rejected(Self) -> Int
+pub fn DataQualityReport::reset(Self) -> Unit
+pub fn DataQualityReport::rows(Self) -> Int
+
+pub struct DenseVector {
+  values : Array[Double]
+} derive(ToJson, @debug.Debug, @json.FromJson)
+pub fn DenseVector::add(Self, Self) -> Self
+pub fn DenseVector::append(Self, Double) -> Unit
+pub fn DenseVector::argmax(Self) -> Int?
+pub fn DenseVector::axpy(Self, Double, Self) -> Unit
+pub fn DenseVector::clamp(Self, Double, Double) -> Self
+pub fn DenseVector::concat(Self, Self) -> Self
+pub fn DenseVector::cosine(Self, Self) -> Double
+pub fn DenseVector::dimension(Self) -> Int
+pub fn DenseVector::distance(Self, Self) -> Double
+pub fn DenseVector::distance_squared(Self, Self) -> Double
+pub fn DenseVector::dot(Self, Self) -> Double
+pub fn DenseVector::dot_checked(Self, Self) -> Double?
+pub fn DenseVector::fill(Self, Double) -> Unit
+pub fn DenseVector::from_array(Array[Double]) -> Self
+pub fn DenseVector::from_view(ArrayView[Double]) -> Self
+pub fn DenseVector::get(Self, Int) -> Double?
+pub fn DenseVector::hadamard(Self, Self) -> Self
+pub fn DenseVector::is_empty(Self) -> Bool
+pub fn DenseVector::is_zero(Self, tolerance? : Double) -> Bool
+pub fn DenseVector::l1_norm(Self) -> Double
+pub fn DenseVector::l2_norm(Self) -> Double
+pub fn DenseVector::map(Self, (Double) -> Double) -> Self
+pub fn DenseVector::max_abs(Self) -> Double
+pub fn DenseVector::mean(Self) -> Double
+pub fn DenseVector::new(Int, fill? : Double) -> Self
+pub fn DenseVector::normalize(Self) -> Self
+pub fn DenseVector::ones(Int) -> Self
+pub fn DenseVector::scale(Self, Double) -> Self
+pub fn DenseVector::set(Self, Int, Double) -> Bool
+pub fn DenseVector::slice(Self, Int, Int) -> Self
+pub fn DenseVector::softmax(Self) -> Self
+pub fn DenseVector::subtract(Self, Self) -> Self
+pub fn DenseVector::sum(Self) -> Double
+pub fn DenseVector::top_index(Self, Int) -> Int?
+pub fn DenseVector::validate(Self, Int) -> ValidationReport
+pub fn DenseVector::values(Self) -> Array[Double]
+pub fn DenseVector::variance(Self) -> Double
+pub fn DenseVector::zeros(Int) -> Self
+pub fn DenseVector::zip_map(Self, Self, (Double, Double) -> Double) -> Self
+
+pub struct Deployment {
+  model : String
+  version : String
+  mut state : DeploymentState
+  created_at : Int64
+  mut updated_at : Int64
+  mut traffic : Double
+}
+pub fn Deployment::model(Self) -> String
+pub fn Deployment::new(String, String, Int64) -> Self
+pub fn Deployment::set_traffic(Self, Double) -> Bool
+pub fn Deployment::state(Self) -> DeploymentState
+pub fn Deployment::traffic(Self) -> Double
+pub fn Deployment::transition(Self, DeploymentState, Int64) -> Bool
+pub fn Deployment::version(Self) -> String
+
+pub struct DeploymentManager {
+  deployments : Map[String, Deployment]
+  policy : RollbackPolicy
+  mut transitions : Int
+  mut rollbacks : Int
+}
+pub fn DeploymentManager::clear(Self) -> Unit
+pub fn DeploymentManager::create(Self, Deployment) -> Bool
+pub fn DeploymentManager::get(Self, String, String) -> Deployment?
+pub fn DeploymentManager::healthy(Self, Double, Double, Double) -> Bool
+pub fn DeploymentManager::new(policy? : RollbackPolicy) -> Self
+pub fn DeploymentManager::rollbacks(Self) -> Int
+pub fn DeploymentManager::transition(Self, String, String, DeploymentState, Int64) -> Bool
+pub fn DeploymentManager::transitions(Self) -> Int
+
+pub(all) enum DeploymentState {
+  Draft
+  Staging
+  Canary
+  Active
+  Paused
+  RolledBack
+  Retired
+} derive(Eq, @debug.Debug)
+
+pub struct DeterministicRng {
+  mut state : UInt64
+}
+pub fn DeterministicRng::new(UInt64) -> Self
+pub fn DeterministicRng::next_double(Self) -> Double
+pub fn DeterministicRng::next_int(Self, Int) -> Int
+pub fn DeterministicRng::next_u64(Self) -> UInt64
+pub fn DeterministicRng::normal(Self) -> Double
+pub fn DeterministicRng::shuffle(Self, Array[Int]) -> Unit
+pub fn DeterministicRng::uniform(Self, Double, Double) -> Double
+
+pub struct DriftMonitor {
+  feature_detectors : Array[PageHinkleyDetector]
+  target_detector : PageHinkleyDetector
+  mut feature_drift_events : Int
+  mut target_drift_events : Int
+}
+pub fn DriftMonitor::feature_events(Self) -> Int
+pub fn DriftMonitor::new(Int, threshold? : Double, delta? : Double) -> Self
+pub fn DriftMonitor::reset(Self) -> Unit
+pub fn DriftMonitor::target_events(Self) -> Int
+pub fn DriftMonitor::update(Self, Array[Double], target? : Double) -> Bool
+
+pub struct DuplicateSignatureTracker {
+  signatures : Map[String, Int]
+  mut rows : Int
+  mut duplicates : Int
+}
+pub fn DuplicateSignatureTracker::duplicate_rate(Self) -> Double
+pub fn DuplicateSignatureTracker::duplicates(Self) -> Int
+pub fn DuplicateSignatureTracker::new() -> Self
+pub fn DuplicateSignatureTracker::observe(Self, Array[Double]) -> Bool
+pub fn DuplicateSignatureTracker::reset(Self) -> Unit
+pub fn DuplicateSignatureTracker::rows(Self) -> Int
+
+pub struct EarlyStopping {
+  patience : Int
+  minimum_delta : Double
+  mut best : Double
+  mut bad_rounds : Int
+  mut initialized : Bool
+}
+pub fn EarlyStopping::bad_rounds(Self) -> Int
+pub fn EarlyStopping::best(Self) -> Double
+pub fn EarlyStopping::new(patience? : Int, minimum_delta? : Double) -> Self
+pub fn EarlyStopping::observe(Self, Double) -> Bool
+pub fn EarlyStopping::reset(Self) -> Unit
+pub fn EarlyStopping::should_stop(Self) -> Bool
+
+pub struct ErrorBudget {
+  target : Double
+  window : Int
+  mut successes : Int
+  mut failures : Int
+}
+pub fn ErrorBudget::availability(Self) -> Double
+pub fn ErrorBudget::failures(Self) -> Int
+pub fn ErrorBudget::healthy(Self) -> Bool
+pub fn ErrorBudget::new(target? : Double, window? : Int) -> Self
+pub fn ErrorBudget::observe(Self, Bool) -> Unit
+pub fn ErrorBudget::remaining(Self) -> Double
+pub fn ErrorBudget::reset(Self) -> Unit
+pub fn ErrorBudget::successes(Self) -> Int
+pub fn ErrorBudget::target(Self) -> Double
+
+pub struct EvaluationSummary {
+  samples : Double
+  log_loss : Double
+  mse : Double
+  accuracy : Double
+  precision : Double
+  recall : Double
+  f1 : Double
+  auc : Double
+  ece : Double
+} derive(ToJson, @debug.Debug, @json.FromJson)
+pub fn EvaluationSummary::accuracy(Self) -> Double
+pub fn EvaluationSummary::auc(Self) -> Double
+pub fn EvaluationSummary::ece(Self) -> Double
+pub fn EvaluationSummary::f1(Self) -> Double
+pub fn EvaluationSummary::log_loss(Self) -> Double
+pub fn EvaluationSummary::mse(Self) -> Double
+pub fn EvaluationSummary::precision(Self) -> Double
+pub fn EvaluationSummary::recall(Self) -> Double
+pub fn EvaluationSummary::samples(Self) -> Double
+
+pub struct EventLog {
+  capacity : Int
+  events : Array[TrainingEvent]
+  ids : Map[String, Bool]
+  mut appended : Int
+  mut evicted : Int
+}
+pub fn EventLog::append(Self, TrainingEvent) -> Bool
+pub fn EventLog::appended(Self) -> Int
+pub fn EventLog::capacity(Self) -> Int
+pub fn EventLog::clear(Self) -> Unit
+pub fn EventLog::events(Self) -> Array[TrainingEvent]
+pub fn EventLog::evicted(Self) -> Int
+pub fn EventLog::first_timestamp(Self) -> Int64?
+pub fn EventLog::last_timestamp(Self) -> Int64?
+pub fn EventLog::new(Int) -> Self
+pub fn EventLog::positive_rate(Self) -> Double
+pub fn EventLog::replay(Self, (TrainingEvent) -> Unit) -> Unit
+pub fn EventLog::size(Self) -> Int
+
+pub struct EwmaAnomalyDetector {
+  baseline : ExponentialMovingVariance
+  threshold : Double
+  mut anomalies : Int
+}
+pub fn EwmaAnomalyDetector::anomalies(Self) -> Int
+pub fn EwmaAnomalyDetector::new(alpha? : Double, threshold? : Double) -> Self
+pub fn EwmaAnomalyDetector::reset(Self) -> Unit
+pub fn EwmaAnomalyDetector::score(Self, Double) -> Double
+pub fn EwmaAnomalyDetector::update(Self, Double) -> Bool
+
+pub struct ExponentialImportance {
+  scores : Array[Double]
+  alpha : Double
+  mut observations : Int
+}
+pub fn ExponentialImportance::new(Int, alpha? : Double) -> Self
+pub fn ExponentialImportance::observations(Self) -> Int
+pub fn ExponentialImportance::reset(Self) -> Unit
+pub fn ExponentialImportance::scores(Self) -> Array[Double]
+pub fn ExponentialImportance::top_k(Self, Int) -> Array[Int]
+pub fn ExponentialImportance::update(Self, Array[Double]) -> Unit
+
+pub struct ExponentialMovingAverage {
+  alpha : Double
+  mut value : Double
+  mut initialized : Bool
+}
+pub fn ExponentialMovingAverage::initialized(Self) -> Bool
+pub fn ExponentialMovingAverage::new(alpha? : Double) -> Self
+pub fn ExponentialMovingAverage::reset(Self) -> Unit
+pub fn ExponentialMovingAverage::update(Self, Double) -> Double
+pub fn ExponentialMovingAverage::value(Self) -> Double
+
+pub struct ExponentialMovingVariance {
+  alpha : Double
+  mut mean : Double
+  mut variance : Double
+  mut initialized : Bool
+}
+pub fn ExponentialMovingVariance::initialized(Self) -> Bool
+pub fn ExponentialMovingVariance::mean(Self) -> Double
+pub fn ExponentialMovingVariance::new(alpha? : Double) -> Self
+pub fn ExponentialMovingVariance::reset(Self) -> Unit
+pub fn ExponentialMovingVariance::standard_deviation(Self) -> Double
+pub fn ExponentialMovingVariance::update(Self, Double) -> Unit
+pub fn ExponentialMovingVariance::variance(Self) -> Double
+pub fn ExponentialMovingVariance::z_score(Self, Double) -> Double
+
 pub struct FTRL {
   alpha : Double
   beta : Double
@@ -22,6 +885,526 @@ pub fn FTRL::new(Int, alpha? : Double, beta? : Double, l1? : Double, l2? : Doubl
 pub fn FTRL::predict(Self, Array[Double]) -> Double
 pub fn FTRL::update(Self, Array[Double], Double) -> Unit
 
+pub struct FactorizationMachine {
+  linear : Array[Double]
+  factors : Array[Array[Double]]
+  learning_rate : Double
+  l2 : Double
+  updates : Int
+}
+pub fn FactorizationMachine::new(Int, Int, learning_rate? : Double, l2? : Double) -> Self
+pub fn FactorizationMachine::predict(Self, SparseVector) -> Double
+pub fn FactorizationMachine::updates(Self) -> Int
+
+pub struct FairnessMonitor {
+  groups : Map[String, GroupMetric]
+  mut observations : Int
+}
+pub fn FairnessMonitor::group(Self, String) -> GroupMetric?
+pub fn FairnessMonitor::groups(Self) -> Array[String]
+pub fn FairnessMonitor::max_positive_rate_gap(Self) -> Double
+pub fn FairnessMonitor::max_recall_gap(Self) -> Double
+pub fn FairnessMonitor::new() -> Self
+pub fn FairnessMonitor::observations(Self) -> Int
+pub fn FairnessMonitor::observe(Self, String, Double, Double, threshold? : Double) -> Unit
+pub fn FairnessMonitor::reset(Self) -> Unit
+
+pub struct FeatureAttribution {
+  index : Int
+  contribution : Double
+}
+pub fn FeatureAttribution::contribution(Self) -> Double
+pub fn FeatureAttribution::index(Self) -> Int
+pub fn FeatureAttribution::new(Int, Double) -> Self
+
+pub struct FeatureDriftSummary {
+  changed : Array[Bool]
+  scores : Array[Double]
+}
+pub fn FeatureDriftSummary::changed(Self, Int) -> Bool
+pub fn FeatureDriftSummary::changed_count(Self) -> Int
+pub fn FeatureDriftSummary::new(Array[Double], Double) -> Self
+pub fn FeatureDriftSummary::scores(Self) -> Array[Double]
+
+pub struct FeatureHasher {
+  buckets : Int
+  signed : Bool
+}
+pub fn FeatureHasher::buckets(Self) -> Int
+pub fn FeatureHasher::encode(Self, Array[String]) -> SparseVector
+pub fn FeatureHasher::encode_map(Self, Map[String, Double]) -> SparseVector
+pub fn FeatureHasher::encode_weighted(Self, Array[(String, Double)]) -> SparseVector
+pub fn FeatureHasher::index(Self, String) -> Int
+pub fn FeatureHasher::new(Int, signed? : Bool) -> Self
+
+pub struct FeatureMaterializer {
+  schema : FeatureSchema
+  defaults : Array[Double]
+  mut materialized : Int
+  mut fallback : Int
+}
+pub fn FeatureMaterializer::fallback(Self) -> Int
+pub fn FeatureMaterializer::materialize(Self, Array[Double]) -> Array[Double]
+pub fn FeatureMaterializer::materialized(Self) -> Int
+pub fn FeatureMaterializer::new(FeatureSchema, defaults? : Array[Double]) -> Self
+pub fn FeatureMaterializer::reset(Self) -> Unit
+
+pub struct FeaturePipeline {
+  standardizer : Standardizer
+  lower : Array[Double]
+  upper : Array[Double]
+  mut clip_enabled : Bool
+  hasher : FeatureHasher?
+  mut transformed : Int
+}
+pub fn FeaturePipeline::dimension(Self) -> Int
+pub fn FeaturePipeline::disable_clip(Self) -> Unit
+pub fn FeaturePipeline::fit_only(Self, Array[Double]) -> Unit
+pub fn FeaturePipeline::mean(Self) -> Array[Double]
+pub fn FeaturePipeline::new(Int, clip_lower? : Double, clip_upper? : Double, hashing_buckets? : Int) -> Self
+pub fn FeaturePipeline::reset(Self) -> Unit
+pub fn FeaturePipeline::set_clip(Self, Double, Double) -> Bool
+pub fn FeaturePipeline::transform(Self, Array[Double]) -> Array[Double]
+pub fn FeaturePipeline::transform_tokens(Self, Array[String]) -> SparseVector?
+pub fn FeaturePipeline::transformed(Self) -> Int
+pub fn FeaturePipeline::variance(Self) -> Array[Double]
+
+pub struct FeatureRangeMonitor {
+  lower : Array[Double]
+  upper : Array[Double]
+  minimum : Array[Double]
+  maximum : Array[Double]
+  violations : Array[Int]
+}
+pub fn FeatureRangeMonitor::maximum(Self) -> Array[Double]
+pub fn FeatureRangeMonitor::minimum(Self) -> Array[Double]
+pub fn FeatureRangeMonitor::new(Array[Double], Array[Double]) -> Self
+pub fn FeatureRangeMonitor::observe(Self, Array[Double]) -> Bool
+pub fn FeatureRangeMonitor::reset(Self) -> Unit
+pub fn FeatureRangeMonitor::violations(Self) -> Array[Int]
+
+pub struct FeatureRecord {
+  key : String
+  version : Int
+  values : Array[Double]
+  timestamp : Int64
+  source : String
+}
+pub fn FeatureRecord::checksum(Self) -> String
+pub fn FeatureRecord::key(Self) -> String
+pub fn FeatureRecord::new(String, Array[Double], Int64, source? : String, version? : Int) -> Self
+pub fn FeatureRecord::source(Self) -> String
+pub fn FeatureRecord::timestamp(Self) -> Int64
+pub fn FeatureRecord::values(Self) -> Array[Double]
+pub fn FeatureRecord::version(Self) -> Int
+
+pub struct FeatureSchema {
+  name : String
+  dimension : Int
+  minimum : Array[Double]
+  maximum : Array[Double]
+  required : Bool
+}
+pub fn FeatureSchema::dimension(Self) -> Int
+pub fn FeatureSchema::name(Self) -> String
+pub fn FeatureSchema::new(String, Int, minimum? : Array[Double], maximum? : Array[Double], required? : Bool) -> Self
+pub fn FeatureSchema::required(Self) -> Bool
+pub fn FeatureSchema::validate(Self, Array[Double]) -> ValidationReport
+
+pub struct FeatureStore {
+  schemas : Map[String, FeatureSchema]
+  records : Map[String, Array[FeatureRecord]]
+  capacity : Int
+  mut writes : Int
+  mut reads : Int
+  mut misses : Int
+  mut rejected : Int
+}
+pub fn FeatureStore::at_version(Self, String, Int) -> FeatureRecord?
+pub fn FeatureStore::clear(Self) -> Unit
+pub fn FeatureStore::history(Self, String) -> Array[FeatureRecord]
+pub fn FeatureStore::hit_rate(Self) -> Double
+pub fn FeatureStore::latest(Self, String) -> FeatureRecord?
+pub fn FeatureStore::misses(Self) -> Int
+pub fn FeatureStore::new(capacity? : Int) -> Self
+pub fn FeatureStore::put(Self, String, FeatureRecord) -> Bool
+pub fn FeatureStore::reads(Self) -> Int
+pub fn FeatureStore::register(Self, FeatureSchema) -> Bool
+pub fn FeatureStore::rejected(Self) -> Int
+pub fn FeatureStore::schema(Self, String) -> FeatureSchema?
+pub fn FeatureStore::writes(Self) -> Int
+
+pub enum FeatureValue {
+  Number(Double)
+  Category(String)
+  Boolean(Bool)
+  Missing
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn FeatureValue::as_number(Self, missing_value? : Double) -> Double
+pub fn FeatureValue::is_missing(Self) -> Bool
+
+pub struct ForecastTracker {
+  metrics : RegressionMetrics
+  mut predictions : Int
+}
+pub fn ForecastTracker::mae(Self) -> Double
+pub fn ForecastTracker::new() -> Self
+pub fn ForecastTracker::observe(Self, Double, Double) -> Unit
+pub fn ForecastTracker::predictions(Self) -> Int
+pub fn ForecastTracker::r2(Self) -> Double
+pub fn ForecastTracker::reset(Self) -> Unit
+pub fn ForecastTracker::rmse(Self) -> Double
+
+pub struct GatedRegressor {
+  low : OnlineRidgeRegression
+  high : OnlineRidgeRegression
+  boundary : Double
+  mut low_count : Int
+  mut high_count : Int
+}
+pub fn GatedRegressor::high_count(Self) -> Int
+pub fn GatedRegressor::low_count(Self) -> Int
+pub fn GatedRegressor::new(Int, boundary? : Double) -> Self
+pub fn GatedRegressor::predict(Self, Array[Double], Double) -> Double
+pub fn GatedRegressor::update(Self, Array[Double], Double, Double) -> Unit
+
+pub struct GaussianClassStats {
+  mut count : Double
+  mean : Array[Double]
+  m2 : Array[Double]
+}
+pub fn GaussianClassStats::count(Self) -> Double
+pub fn GaussianClassStats::log_likelihood(Self, Array[Double], smoothing? : Double) -> Double
+pub fn GaussianClassStats::mean(Self) -> Array[Double]
+pub fn GaussianClassStats::new(Int) -> Self
+pub fn GaussianClassStats::reset(Self) -> Unit
+pub fn GaussianClassStats::update(Self, Array[Double], weight? : Double) -> Unit
+pub fn GaussianClassStats::variance(Self, smoothing? : Double) -> Array[Double]
+
+pub struct GradientAccumulator {
+  gradients : Array[Double]
+  mut count : Int
+}
+pub fn GradientAccumulator::add(Self, Array[Double]) -> Unit
+pub fn GradientAccumulator::count(Self) -> Int
+pub fn GradientAccumulator::mean(Self) -> Array[Double]
+pub fn GradientAccumulator::new(Int) -> Self
+pub fn GradientAccumulator::sum(Self) -> Array[Double]
+pub fn GradientAccumulator::take_mean(Self) -> Array[Double]
+
+pub struct GradientClipper {
+  max_norm : Double
+  max_value : Double
+}
+pub fn GradientClipper::clip(Self, Array[Double]) -> Array[Double]
+pub fn GradientClipper::max_norm(Self) -> Double
+pub fn GradientClipper::max_value(Self) -> Double
+pub fn GradientClipper::new(max_norm? : Double, max_value? : Double) -> Self
+
+pub struct GradientGuard {
+  lower : Double
+  upper : Double
+  mut clipped : Int
+  mut invalid : Int
+}
+pub fn GradientGuard::apply(Self, Array[Double]) -> Array[Double]
+pub fn GradientGuard::clipped(Self) -> Int
+pub fn GradientGuard::invalid(Self) -> Int
+pub fn GradientGuard::new(lower? : Double, upper? : Double) -> Self
+pub fn GradientGuard::reset(Self) -> Unit
+
+pub struct GroupMetric {
+  group : String
+  mut count : Int
+  mut positives : Int
+  mut true_positives : Int
+  mut false_positives : Int
+  mut false_negatives : Int
+}
+pub fn GroupMetric::count(Self) -> Int
+pub fn GroupMetric::false_positive_rate(Self) -> Double
+pub fn GroupMetric::group(Self) -> String
+pub fn GroupMetric::new(String) -> Self
+pub fn GroupMetric::observe(Self, Double, Double, threshold? : Double) -> Unit
+pub fn GroupMetric::positive_rate(Self) -> Double
+pub fn GroupMetric::precision(Self) -> Double
+pub fn GroupMetric::recall(Self) -> Double
+pub fn GroupMetric::reset(Self) -> Unit
+
+pub struct HashedFeatureSelector {
+  dimension : Int
+  importance : ExponentialImportance
+  threshold : Double
+}
+pub fn HashedFeatureSelector::dimension(Self) -> Int
+pub fn HashedFeatureSelector::new(Int, threshold? : Double) -> Self
+pub fn HashedFeatureSelector::observe(Self, SparseVector, Double) -> Unit
+pub fn HashedFeatureSelector::reset(Self) -> Unit
+pub fn HashedFeatureSelector::scores(Self) -> Array[Double]
+pub fn HashedFeatureSelector::selected(Self) -> Array[Int]
+pub fn HashedFeatureSelector::selected_top_k(Self, Int) -> Array[Int]
+
+pub struct HashingVectorizer {
+  hasher : FeatureHasher
+  lowercase : Bool
+  ngram_order : Int
+}
+pub fn HashingVectorizer::buckets(Self) -> Int
+pub fn HashingVectorizer::encode(Self, String) -> SparseVector
+pub fn HashingVectorizer::new(Int, lowercase? : Bool, ngram_order? : Int) -> Self
+pub fn HashingVectorizer::tokens(Self, String) -> Array[String]
+
+pub struct HistogramAuc {
+  positive : Array[Double]
+  negative : Array[Double]
+  mut total_positive : Double
+  mut total_negative : Double
+}
+pub fn HistogramAuc::auc(Self) -> Double
+pub fn HistogramAuc::bins(Self) -> Int
+pub fn HistogramAuc::new(bins? : Int) -> Self
+pub fn HistogramAuc::reset(Self) -> Unit
+pub fn HistogramAuc::update(Self, Double, Double, weight? : Double) -> Unit
+
+pub struct HoldoutSplit {
+  train : DataBatch
+  holdout : DataBatch
+}
+pub fn HoldoutSplit::holdout(Self) -> DataBatch
+pub fn HoldoutSplit::holdout_size(Self) -> Int
+pub fn HoldoutSplit::new(DataBatch, train_ratio? : Double) -> Self
+pub fn HoldoutSplit::train(Self) -> DataBatch
+pub fn HoldoutSplit::train_size(Self) -> Int
+
+pub struct HoltWinters {
+  alpha : Double
+  beta : Double
+  gamma : Double
+  season_length : Int
+  seasonals : Array[Double]
+  mut level : Double
+  mut trend : Double
+  mut count : Int
+}
+pub fn HoltWinters::count(Self) -> Int
+pub fn HoltWinters::forecast(Self, Int) -> Array[Double]
+pub fn HoltWinters::level(Self) -> Double
+pub fn HoltWinters::new(Int, alpha? : Double, beta? : Double, gamma? : Double) -> Self
+pub fn HoltWinters::reset(Self) -> Unit
+pub fn HoltWinters::seasonals(Self) -> Array[Double]
+pub fn HoltWinters::trend(Self) -> Double
+pub fn HoltWinters::update(Self, Double) -> Double
+
+pub enum KernelKind {
+  Linear
+  Polynomial(degree~ : Int, scale~ : Double, offset~ : Double)
+  Gaussian(width~ : Double)
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn KernelKind::evaluate(Self, Array[Double], Array[Double]) -> Double
+
+pub struct KernelSupport {
+  features : Array[Double]
+  label : Double
+  coefficient : Double
+}
+pub fn KernelSupport::coefficient(Self) -> Double
+pub fn KernelSupport::features(Self) -> Array[Double]
+pub fn KernelSupport::label(Self) -> Double
+
+pub struct KeyedFeatureJoin {
+  capacity : Int
+  pending_features : Map[String, Array[Double]]
+  pending_labels : Map[String, Double]
+  mut matched : Int
+  mut dropped : Int
+}
+pub fn KeyedFeatureJoin::dropped(Self) -> Int
+pub fn KeyedFeatureJoin::matched(Self) -> Int
+pub fn KeyedFeatureJoin::new(Int) -> Self
+pub fn KeyedFeatureJoin::pending(Self) -> Int
+pub fn KeyedFeatureJoin::put_features(Self, String, Array[Double]) -> Array[Double]?
+pub fn KeyedFeatureJoin::put_label(Self, String, Double) -> Array[Double]?
+pub fn KeyedFeatureJoin::reset(Self) -> Unit
+
+pub struct LatencyTracker {
+  samples : SequenceWindow
+  mut total : Int
+  mut rejected : Int
+}
+pub fn LatencyTracker::count(Self) -> Int
+pub fn LatencyTracker::mean(Self) -> Double
+pub fn LatencyTracker::new(capacity? : Int) -> Self
+pub fn LatencyTracker::observe(Self, Double) -> Bool
+pub fn LatencyTracker::p95(Self) -> Double
+pub fn LatencyTracker::percentile(Self, Double) -> Double
+pub fn LatencyTracker::rejected(Self) -> Int
+pub fn LatencyTracker::reset(Self) -> Unit
+pub fn LatencyTracker::total(Self) -> Int
+
+pub struct LearningCurve {
+  train : MetricSeries
+  validation : MetricSeries
+}
+pub fn LearningCurve::generalization_gap(Self) -> Double
+pub fn LearningCurve::new(capacity? : Int) -> Self
+pub fn LearningCurve::record(Self, Double, Double) -> Unit
+pub fn LearningCurve::reset(Self) -> Unit
+pub fn LearningCurve::train(Self) -> Array[Double]
+pub fn LearningCurve::validation(Self) -> Array[Double]
+
+pub enum LearningRateSchedule {
+  Constant
+  InverseScaling(power~ : Double)
+  ExponentialDecay(decay~ : Double)
+  CosineDecay(minimum~ : Double, period~ : Int)
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn LearningRateSchedule::rate(Self, Double, Int) -> Double
+
+pub struct LineageNode {
+  dataset : String
+  source : String
+  schema : String
+  row_count : Int
+  checksum : String
+  timestamp : Int64
+}
+pub fn LineageNode::checksum(Self) -> String
+pub fn LineageNode::dataset(Self) -> String
+pub fn LineageNode::new(String, String, String, Int, String, Int64) -> Self
+pub fn LineageNode::row_count(Self) -> Int
+pub fn LineageNode::schema(Self) -> String
+pub fn LineageNode::source(Self) -> String
+pub fn LineageNode::timestamp(Self) -> Int64
+
+pub struct LinearEndpoint {
+  weights : Array[Double]
+  bias : Double
+  version : String
+  prediction_guard : PredictionGuard
+  mut requests : Int
+  mut rejected : Int
+}
+pub fn LinearEndpoint::new(Array[Double], bias? : Double, version? : String, lower? : Double, upper? : Double) -> Self
+pub fn LinearEndpoint::predict(Self, PredictionRequest) -> PredictionResponse
+pub fn LinearEndpoint::predict_batch(Self, Array[PredictionRequest]) -> Array[PredictionResponse]
+pub fn LinearEndpoint::rejected(Self) -> Int
+pub fn LinearEndpoint::requests(Self) -> Int
+pub fn LinearEndpoint::reset(Self) -> Unit
+pub fn LinearEndpoint::version(Self) -> String
+pub fn LinearEndpoint::weights(Self) -> Array[Double]
+
+pub struct LossAccumulator {
+  kind : LossKind
+  parameter : Double
+  mut count : Int
+  mut weight : Double
+  mut total : Double
+  mut absolute_gradient : Double
+  mut maximum : Double
+}
+pub fn LossAccumulator::count(Self) -> Int
+pub fn LossAccumulator::kind(Self) -> LossKind
+pub fn LossAccumulator::maximum(Self) -> Double
+pub fn LossAccumulator::mean(Self) -> Double
+pub fn LossAccumulator::mean_absolute_gradient(Self) -> Double
+pub fn LossAccumulator::new(LossKind, parameter? : Double) -> Self
+pub fn LossAccumulator::reset(Self) -> Unit
+pub fn LossAccumulator::update(Self, Double, Double, weight? : Double) -> Double
+pub fn LossAccumulator::weight(Self) -> Double
+
+pub(all) enum LossKind {
+  Squared
+  Absolute
+  Huber
+  LogLoss
+  Hinge
+  Quantile
+  Poisson
+} derive(Eq, @debug.Debug)
+
+pub struct LossSchedule {
+  initial : Double
+  decay : Double
+  floor : Double
+  mut step : Int
+}
+pub fn LossSchedule::advance(Self, steps? : Int) -> Double
+pub fn LossSchedule::new(Double, decay? : Double, floor? : Double) -> Self
+pub fn LossSchedule::reset(Self) -> Unit
+pub fn LossSchedule::step(Self) -> Int
+pub fn LossSchedule::value(Self) -> Double
+
+pub struct MarkovTransitionModel {
+  states : Int
+  transitions : Array[Array[Double]]
+  totals : Array[Double]
+  mut previous : Int?
+}
+pub fn MarkovTransitionModel::distribution(Self, Int) -> Array[Double]
+pub fn MarkovTransitionModel::new(Int, smoothing? : Double) -> Self
+pub fn MarkovTransitionModel::next_state(Self, Int) -> Int?
+pub fn MarkovTransitionModel::observe(Self, Int) -> Bool
+pub fn MarkovTransitionModel::probability(Self, Int, Int) -> Double
+pub fn MarkovTransitionModel::reset(Self) -> Unit
+pub fn MarkovTransitionModel::states(Self) -> Int
+
+pub struct Matrix {
+  rows : Int
+  cols : Int
+  values : Array[Double]
+} derive(ToJson, @debug.Debug, @json.FromJson)
+pub fn Matrix::add(Self, Self) -> Self
+pub fn Matrix::cols(Self) -> Int
+pub fn Matrix::column(Self, Int) -> DenseVector?
+pub fn Matrix::determinant(Self) -> Double
+pub fn Matrix::frobenius_norm(Self) -> Double
+pub fn Matrix::from_rows(Array[Array[Double]]) -> Self
+pub fn Matrix::get(Self, Int, Int) -> Double?
+pub fn Matrix::identity(Int) -> Self
+pub fn Matrix::inverse(Self) -> Self?
+pub fn Matrix::is_symmetric(Self, tolerance? : Double) -> Bool
+pub fn Matrix::multiply(Self, Self) -> Self
+pub fn Matrix::multiply_vector(Self, Array[Double]) -> Array[Double]
+pub fn Matrix::new(Int, Int, fill? : Double) -> Self
+pub fn Matrix::row(Self, Int) -> DenseVector?
+pub fn Matrix::rows(Self) -> Int
+pub fn Matrix::scale(Self, Double) -> Self
+pub fn Matrix::set(Self, Int, Int, Double) -> Bool
+pub fn Matrix::solve(Self, Array[Double]) -> Array[Double]?
+pub fn Matrix::to_rows(Self) -> Array[Array[Double]]
+pub fn Matrix::trace(Self) -> Double
+pub fn Matrix::transpose(Self) -> Self
+
+pub struct MetricSeries {
+  name : String
+  capacity : Int
+  values : Array[Double]
+  mut seen : Int
+}
+pub fn MetricSeries::last(Self) -> Double?
+pub fn MetricSeries::maximum(Self) -> Double
+pub fn MetricSeries::mean(Self) -> Double
+pub fn MetricSeries::minimum(Self) -> Double
+pub fn MetricSeries::name(Self) -> String
+pub fn MetricSeries::new(String, capacity? : Int) -> Self
+pub fn MetricSeries::record(Self, Double) -> Unit
+pub fn MetricSeries::reset(Self) -> Unit
+pub fn MetricSeries::seen(Self) -> Int
+pub fn MetricSeries::trend(Self) -> Double
+pub fn MetricSeries::values(Self) -> Array[Double]
+
+pub struct MetricSnapshot {
+  name : String
+  value : Double
+  timestamp : Int64
+  samples : Int
+}
+pub fn MetricSnapshot::name(Self) -> String
+pub fn MetricSnapshot::new(String, Double, Int64, samples? : Int) -> Self
+pub fn MetricSnapshot::samples(Self) -> Int
+pub fn MetricSnapshot::timestamp(Self) -> Int64
+pub fn MetricSnapshot::value(Self) -> Double
+
 pub struct MetricsTracker {
   mut count : Double
   mut sum_squared_error : Double
@@ -32,6 +1415,724 @@ pub fn MetricsTracker::mse(Self) -> Double
 pub fn MetricsTracker::new() -> Self
 pub fn MetricsTracker::update(Self, Double, Double) -> Unit
 
+pub struct MiniBatchAccumulator {
+  dimension : Int
+  features : Array[Array[Double]]
+  labels : Array[Double]
+  weights : Array[Double]
+  capacity : Int
+}
+pub fn MiniBatchAccumulator::add(Self, Array[Double], Double, weight? : Double) -> Bool
+pub fn MiniBatchAccumulator::clear(Self) -> Unit
+pub fn MiniBatchAccumulator::flush(Self) -> DataBatch
+pub fn MiniBatchAccumulator::new(Int, capacity? : Int) -> Self
+pub fn MiniBatchAccumulator::ready(Self) -> Bool
+pub fn MiniBatchAccumulator::size(Self) -> Int
+
+pub enum MissingValuePolicy {
+  Reject
+  Zero
+  Mean
+  CarryForward
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+
+pub struct ModelArtifact {
+  name : String
+  version : String
+  checksum : String
+  created_at : String
+  mut stage : String
+  metrics : Map[String, Double]
+} derive(ToJson, @debug.Debug, @json.FromJson)
+pub fn ModelArtifact::add_metric(Self, String, Double) -> Unit
+pub fn ModelArtifact::checksum(Self) -> String
+pub fn ModelArtifact::metric(Self, String) -> Double?
+pub fn ModelArtifact::metrics(Self) -> Map[String, Double]
+pub fn ModelArtifact::name(Self) -> String
+pub fn ModelArtifact::new(String, String, String, String) -> Self
+pub fn ModelArtifact::set_stage(Self, String) -> Unit
+pub fn ModelArtifact::stage(Self) -> String
+pub fn ModelArtifact::version(Self) -> String
+
+pub struct ModelCard {
+  name : String
+  version : String
+  task : String
+  owner : String
+  features : Array[String]
+  guarantees : Array[String]
+  notes : Array[String]
+}
+pub fn ModelCard::add_feature(Self, String) -> Unit
+pub fn ModelCard::add_guarantee(Self, String) -> Unit
+pub fn ModelCard::add_note(Self, String) -> Unit
+pub fn ModelCard::features(Self) -> Array[String]
+pub fn ModelCard::guarantees(Self) -> Array[String]
+pub fn ModelCard::name(Self) -> String
+pub fn ModelCard::new(String, String, String, String) -> Self
+pub fn ModelCard::notes(Self) -> Array[String]
+pub fn ModelCard::owner(Self) -> String
+pub fn ModelCard::task(Self) -> String
+pub fn ModelCard::version(Self) -> String
+
+pub struct ModelHealth {
+  mut accepted : Int
+  mut rejected : Int
+  mut prediction_errors : Int
+  mut inference_failures : Int
+  latency : MetricSeries
+  loss : MetricSeries
+}
+pub fn ModelHealth::acceptance_rate(Self) -> Double
+pub fn ModelHealth::accepted(Self) -> Int
+pub fn ModelHealth::inference_failures(Self) -> Int
+pub fn ModelHealth::mean_loss(Self) -> Double
+pub fn ModelHealth::new() -> Self
+pub fn ModelHealth::p95_latency(Self) -> Double
+pub fn ModelHealth::record_error(Self) -> Unit
+pub fn ModelHealth::record_prediction_error(Self) -> Unit
+pub fn ModelHealth::record_sample(Self, Bool, Double, Double) -> Unit
+pub fn ModelHealth::rejected(Self) -> Int
+pub fn ModelHealth::reset(Self) -> Unit
+
+pub struct ModelMonitor {
+  name : String
+  metrics : Map[String, RunningMoments]
+  rules : Array[AlertRule]
+  mut snapshots : Int
+  mut alerts : Int
+}
+pub fn ModelMonitor::add_rule(Self, AlertRule) -> Unit
+pub fn ModelMonitor::alert_count(Self) -> Int
+pub fn ModelMonitor::mean(Self, String) -> Double
+pub fn ModelMonitor::new(String) -> Self
+pub fn ModelMonitor::observe(Self, MetricSnapshot, Int64) -> Array[String]
+pub fn ModelMonitor::reset(Self) -> Unit
+pub fn ModelMonitor::snapshot_count(Self) -> Int
+pub fn ModelMonitor::variance(Self, String) -> Double
+
+pub struct ModelRegistry {
+  artifacts : Map[String, ModelArtifact]
+  mut registrations : Int
+}
+pub fn ModelRegistry::clear(Self) -> Unit
+pub fn ModelRegistry::get(Self, String, String) -> ModelArtifact?
+pub fn ModelRegistry::new() -> Self
+pub fn ModelRegistry::promote(Self, String, String, String) -> Bool
+pub fn ModelRegistry::register(Self, ModelArtifact) -> Bool
+pub fn ModelRegistry::registrations(Self) -> Int
+pub fn ModelRegistry::size(Self) -> Int
+pub fn ModelRegistry::versions(Self, String) -> Array[String]
+
+pub struct MomentumOptimizer {
+  learning_rate : Double
+  momentum : Double
+  dampening : Double
+  velocity : Array[Double]
+  clipper : GradientClipper
+  mut step_count : Int
+}
+pub fn MomentumOptimizer::apply(Self, Array[Double], Array[Double]) -> Unit
+pub fn MomentumOptimizer::new(Int, learning_rate? : Double, momentum? : Double, dampening? : Double, clipper? : GradientClipper) -> Self
+pub fn MomentumOptimizer::reset(Self) -> Unit
+pub fn MomentumOptimizer::update(Self, Array[Double]) -> Array[Double]
+pub fn MomentumOptimizer::velocity(Self) -> Array[Double]
+
+pub struct MultivariateAnomalyDetector {
+  moments : VectorMoments
+  threshold : Double
+  mut anomalies : Int
+}
+pub fn MultivariateAnomalyDetector::anomalies(Self) -> Int
+pub fn MultivariateAnomalyDetector::mean(Self) -> Array[Double]
+pub fn MultivariateAnomalyDetector::new(Int, threshold? : Double) -> Self
+pub fn MultivariateAnomalyDetector::reset(Self) -> Unit
+pub fn MultivariateAnomalyDetector::score(Self, Array[Double]) -> Double
+pub fn MultivariateAnomalyDetector::update(Self, Array[Double]) -> Bool
+
+pub enum ObjectiveKind {
+  Squared
+  Logistic
+  Huber(delta~ : Double)
+  Quantile(probability~ : Double)
+  Hinge
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn ObjectiveKind::gradient(Self, Double, Double) -> Double
+pub fn ObjectiveKind::loss(Self, Double, Double) -> Double
+
+pub struct ObjectiveTracker {
+  objective : ObjectiveKind
+  mut count : Double
+  mut total : Double
+  mut last : Double
+}
+pub fn ObjectiveTracker::count(Self) -> Double
+pub fn ObjectiveTracker::last(Self) -> Double
+pub fn ObjectiveTracker::mean(Self) -> Double
+pub fn ObjectiveTracker::new(ObjectiveKind) -> Self
+pub fn ObjectiveTracker::observe(Self, Double, Double, weight? : Double) -> Unit
+pub fn ObjectiveTracker::reset(Self) -> Unit
+
+pub struct OnlineAR {
+  lags : Int
+  coefficients : Array[Double]
+  history : SequenceWindow
+  learning_rate : Double
+  mut observations : Int
+  mut squared_error : Double
+}
+pub fn OnlineAR::coefficients(Self) -> Array[Double]
+pub fn OnlineAR::new(Int, learning_rate? : Double) -> Self
+pub fn OnlineAR::observations(Self) -> Int
+pub fn OnlineAR::predict(Self) -> Double
+pub fn OnlineAR::reset(Self) -> Unit
+pub fn OnlineAR::rmse(Self) -> Double
+pub fn OnlineAR::update(Self, Double) -> Double
+
+pub struct OnlineAutoregressive {
+  lags : Int
+  weights : Array[Double]
+  history : Array[Double]
+  learning_rate : Double
+  l2 : Double
+  mut steps : Int
+}
+pub fn OnlineAutoregressive::feature_vector(Self) -> Array[Double]
+pub fn OnlineAutoregressive::forecast(Self, Int) -> Array[Double]
+pub fn OnlineAutoregressive::history(Self) -> Array[Double]
+pub fn OnlineAutoregressive::lags(Self) -> Int
+pub fn OnlineAutoregressive::new(Int, learning_rate? : Double, l2? : Double) -> Self
+pub fn OnlineAutoregressive::predict(Self) -> Double
+pub fn OnlineAutoregressive::reset(Self) -> Unit
+pub fn OnlineAutoregressive::steps(Self) -> Int
+pub fn OnlineAutoregressive::update(Self, Double) -> Double
+pub fn OnlineAutoregressive::weights(Self) -> Array[Double]
+
+pub struct OnlineBaggingClassifier {
+  models : Array[AdagradLogisticRegression]
+  rng : DeterministicRng
+  mut observations : Int
+}
+pub fn OnlineBaggingClassifier::member_predictions(Self, Array[Double]) -> Array[Double]
+pub fn OnlineBaggingClassifier::models(Self) -> Int
+pub fn OnlineBaggingClassifier::new(Int, Int, seed? : UInt64) -> Self
+pub fn OnlineBaggingClassifier::observations(Self) -> Int
+pub fn OnlineBaggingClassifier::predict(Self, Array[Double]) -> Double
+pub fn OnlineBaggingClassifier::reset(Self) -> Unit
+pub fn OnlineBaggingClassifier::update(Self, Array[Double], Double) -> Unit
+
+pub struct OnlineBatchScorer {
+  endpoint : LinearEndpoint
+  batcher : RequestBatcher
+  stats : ServingStats
+}
+pub fn OnlineBatchScorer::endpoint(Self) -> LinearEndpoint
+pub fn OnlineBatchScorer::flush(Self) -> Array[PredictionResponse]
+pub fn OnlineBatchScorer::new(Array[Double], batch_size? : Int, version? : String) -> Self
+pub fn OnlineBatchScorer::pending(Self) -> Int
+pub fn OnlineBatchScorer::reset(Self) -> Unit
+pub fn OnlineBatchScorer::stats(Self) -> ServingStats
+pub fn OnlineBatchScorer::submit(Self, PredictionRequest) -> Array[PredictionResponse]
+
+pub struct OnlineBernoulliNB {
+  ones : Array[Array[Double]]
+  counts : Array[Double]
+  smoothing : Double
+  mut steps : Int
+}
+pub fn OnlineBernoulliNB::feature_probability(Self, Int, Int) -> Double
+pub fn OnlineBernoulliNB::log_scores(Self, Array[Double]) -> Array[Double]
+pub fn OnlineBernoulliNB::new(Int, Int, smoothing? : Double) -> Self
+pub fn OnlineBernoulliNB::predict(Self, Array[Double]) -> Int?
+pub fn OnlineBernoulliNB::predict_proba(Self, Array[Double]) -> Array[Double]
+pub fn OnlineBernoulliNB::reset(Self) -> Unit
+pub fn OnlineBernoulliNB::steps(Self) -> Int
+pub fn OnlineBernoulliNB::update(Self, Array[Double], Int, weight? : Double) -> Bool
+
+pub struct OnlineCounter {
+  values : Map[String, Double]
+  mut updates : Int
+}
+pub fn OnlineCounter::add(Self, String, value? : Double) -> Unit
+pub fn OnlineCounter::get(Self, String) -> Double
+pub fn OnlineCounter::keys(Self) -> Array[String]
+pub fn OnlineCounter::new() -> Self
+pub fn OnlineCounter::reset(Self) -> Unit
+pub fn OnlineCounter::total(Self) -> Double
+pub fn OnlineCounter::updates(Self) -> Int
+
+pub struct OnlineDecisionStump {
+  feature : Int
+  mut threshold : Double
+  mut left_positive : Double
+  mut left_negative : Double
+  mut right_positive : Double
+  mut right_negative : Double
+  mut updates : Int
+}
+pub fn OnlineDecisionStump::accuracy(Self) -> Double
+pub fn OnlineDecisionStump::feature(Self) -> Int
+pub fn OnlineDecisionStump::new(Int, threshold? : Double) -> Self
+pub fn OnlineDecisionStump::predict(Self, Array[Double], smoothing? : Double) -> Double
+pub fn OnlineDecisionStump::reset(Self) -> Unit
+pub fn OnlineDecisionStump::threshold(Self) -> Double
+pub fn OnlineDecisionStump::update(Self, Array[Double], Double, weight? : Double) -> Unit
+pub fn OnlineDecisionStump::update_threshold(Self, Double) -> Unit
+pub fn OnlineDecisionStump::updates(Self) -> Int
+
+pub struct OnlineEvaluationSession {
+  mut metrics : MetricsTracker
+  mut confusion : ConfusionMatrix
+  mut auc_tracker : AucTracker
+  mut calibration : CalibrationTracker
+  mut regression : RegressionMetrics
+}
+pub fn OnlineEvaluationSession::classification(Self) -> ConfusionMatrix
+pub fn OnlineEvaluationSession::new() -> Self
+pub fn OnlineEvaluationSession::observe_binary(Self, Double, Double) -> Unit
+pub fn OnlineEvaluationSession::observe_regression(Self, Double, Double) -> Unit
+pub fn OnlineEvaluationSession::regression(Self) -> RegressionMetrics
+pub fn OnlineEvaluationSession::reset(Self) -> Unit
+pub fn OnlineEvaluationSession::summary(Self) -> EvaluationSummary
+
+pub struct OnlineFeatureSelector {
+  moments : VectorMoments
+  target : RunningMoments
+  cross : Array[Double]
+  mut observations : Double
+}
+pub fn OnlineFeatureSelector::absolute_importance(Self) -> Array[Double]
+pub fn OnlineFeatureSelector::correlations(Self) -> Array[Double]
+pub fn OnlineFeatureSelector::dimension(Self) -> Int
+pub fn OnlineFeatureSelector::new(Int) -> Self
+pub fn OnlineFeatureSelector::observations(Self) -> Double
+pub fn OnlineFeatureSelector::rank(Self, Int) -> Array[Int]
+pub fn OnlineFeatureSelector::reset(Self) -> Unit
+pub fn OnlineFeatureSelector::select(Self, Double) -> Array[Int]
+pub fn OnlineFeatureSelector::update(Self, Array[Double], Double) -> Unit
+
+pub struct OnlineGammaRegression {
+  weights : Array[Double]
+  learning_rate : Double
+  l2 : Double
+  mut steps : Int
+}
+pub fn OnlineGammaRegression::loss(Self, Array[Double], Double) -> Double
+pub fn OnlineGammaRegression::new(Int, learning_rate? : Double, l2? : Double) -> Self
+pub fn OnlineGammaRegression::predict(Self, Array[Double]) -> Double
+pub fn OnlineGammaRegression::reset(Self) -> Unit
+pub fn OnlineGammaRegression::steps(Self) -> Int
+pub fn OnlineGammaRegression::update(Self, Array[Double], Double) -> Unit
+pub fn OnlineGammaRegression::weights(Self) -> Array[Double]
+
+pub struct OnlineGaussianNB {
+  classes : Array[GaussianClassStats]
+  class_counts : Array[Double]
+  smoothing : Double
+  mut steps : Int
+}
+pub fn OnlineGaussianNB::class_counts(Self) -> Array[Double]
+pub fn OnlineGaussianNB::classes(Self) -> Int
+pub fn OnlineGaussianNB::dimension(Self) -> Int
+pub fn OnlineGaussianNB::log_priors(Self) -> Array[Double]
+pub fn OnlineGaussianNB::log_scores(Self, Array[Double]) -> Array[Double]
+pub fn OnlineGaussianNB::new(Int, Int, smoothing? : Double) -> Self
+pub fn OnlineGaussianNB::predict(Self, Array[Double]) -> Int?
+pub fn OnlineGaussianNB::predict_proba(Self, Array[Double]) -> Array[Double]
+pub fn OnlineGaussianNB::reset(Self) -> Unit
+pub fn OnlineGaussianNB::steps(Self) -> Int
+pub fn OnlineGaussianNB::update(Self, Array[Double], Int, weight? : Double) -> Bool
+
+pub struct OnlineHuberRegression {
+  weights : Array[Double]
+  learning_rate : Double
+  delta : Double
+  l2 : Double
+  mut steps : Int
+}
+pub fn OnlineHuberRegression::loss(Self, Array[Double], Double) -> Double
+pub fn OnlineHuberRegression::new(Int, learning_rate? : Double, delta? : Double, l2? : Double) -> Self
+pub fn OnlineHuberRegression::predict(Self, Array[Double]) -> Double
+pub fn OnlineHuberRegression::steps(Self) -> Int
+pub fn OnlineHuberRegression::update(Self, Array[Double], Double) -> Unit
+pub fn OnlineHuberRegression::weights(Self) -> Array[Double]
+
+pub struct OnlineIsotonicCalibrator {
+  scores : Array[Double]
+  labels : Array[Double]
+  capacity : Int
+}
+pub fn OnlineIsotonicCalibrator::new(capacity? : Int) -> Self
+pub fn OnlineIsotonicCalibrator::predict(Self, Double) -> Double
+pub fn OnlineIsotonicCalibrator::reset(Self) -> Unit
+pub fn OnlineIsotonicCalibrator::size(Self) -> Int
+pub fn OnlineIsotonicCalibrator::update(Self, Double, Double) -> Unit
+
+pub struct OnlineKMeans {
+  centroids : Array[Array[Double]]
+  counts : Array[Double]
+  learning_rate : Double
+  mut assignments : Int
+}
+pub fn OnlineKMeans::assignments(Self) -> Int
+pub fn OnlineKMeans::centroids(Self) -> Array[Array[Double]]
+pub fn OnlineKMeans::cluster_counts(Self) -> Array[Double]
+pub fn OnlineKMeans::clusters(Self) -> Int
+pub fn OnlineKMeans::dimension(Self) -> Int
+pub fn OnlineKMeans::distance_to_nearest(Self, Array[Double]) -> Double
+pub fn OnlineKMeans::nearest(Self, Array[Double]) -> Int?
+pub fn OnlineKMeans::new(Int, Int, learning_rate? : Double) -> Self
+pub fn OnlineKMeans::reset(Self) -> Unit
+pub fn OnlineKMeans::update(Self, Array[Double]) -> Int?
+
+pub struct OnlineKernelClassifier {
+  kernel : KernelKind
+  budget : Int
+  supports : Array[KernelSupport]
+  learning_rate : Double
+  mut bias : Double
+  mut updates : Int
+}
+pub fn OnlineKernelClassifier::loss(Self, Array[Double], Double) -> Double
+pub fn OnlineKernelClassifier::new(kernel? : KernelKind, budget? : Int, learning_rate? : Double) -> Self
+pub fn OnlineKernelClassifier::predict(Self, Array[Double]) -> Double
+pub fn OnlineKernelClassifier::predict_label(Self, Array[Double]) -> Double
+pub fn OnlineKernelClassifier::reset(Self) -> Unit
+pub fn OnlineKernelClassifier::score(Self, Array[Double]) -> Double
+pub fn OnlineKernelClassifier::support_count(Self) -> Int
+pub fn OnlineKernelClassifier::update(Self, Array[Double], Double) -> Bool
+pub fn OnlineKernelClassifier::updates(Self) -> Int
+
+pub struct OnlineMatrixFactorization {
+  users : Array[Array[Double]]
+  items : Array[Array[Double]]
+  learning_rate : Double
+  regularization : Double
+  mut updates : Int
+}
+pub fn OnlineMatrixFactorization::item_count(Self) -> Int
+pub fn OnlineMatrixFactorization::item_vector(Self, Int) -> Array[Double]?
+pub fn OnlineMatrixFactorization::new(Int, Int, Int, learning_rate? : Double, regularization? : Double) -> Self
+pub fn OnlineMatrixFactorization::predict(Self, Int, Int) -> Double
+pub fn OnlineMatrixFactorization::rank(Self) -> Int
+pub fn OnlineMatrixFactorization::reset(Self) -> Unit
+pub fn OnlineMatrixFactorization::update(Self, Int, Int, Double) -> Bool
+pub fn OnlineMatrixFactorization::updates(Self) -> Int
+pub fn OnlineMatrixFactorization::user_count(Self) -> Int
+pub fn OnlineMatrixFactorization::user_vector(Self, Int) -> Array[Double]?
+
+pub struct OnlineMedoid {
+  center : Array[Double]
+  mut count : Double
+  learning_rate : Double
+  mut cost : Double
+}
+pub fn OnlineMedoid::center(Self) -> Array[Double]
+pub fn OnlineMedoid::count(Self) -> Double
+pub fn OnlineMedoid::mean_cost(Self) -> Double
+pub fn OnlineMedoid::new(Int, learning_rate? : Double) -> Self
+pub fn OnlineMedoid::reset(Self) -> Unit
+pub fn OnlineMedoid::update(Self, Array[Double]) -> Double
+
+pub struct OnlinePCA {
+  components : Array[Array[Double]]
+  mean : Array[Double]
+  learning_rate : Double
+  mut count : Double
+  explained : Array[Double]
+}
+pub fn OnlinePCA::component_vectors(Self) -> Array[Array[Double]]
+pub fn OnlinePCA::components(Self) -> Int
+pub fn OnlinePCA::count(Self) -> Double
+pub fn OnlinePCA::dimension(Self) -> Int
+pub fn OnlinePCA::explained_variance(Self) -> Array[Double]
+pub fn OnlinePCA::mean(Self) -> Array[Double]
+pub fn OnlinePCA::new(Int, Int, learning_rate? : Double) -> Self
+pub fn OnlinePCA::reconstruct(Self, Array[Double]) -> Array[Double]
+pub fn OnlinePCA::reset(Self) -> Unit
+pub fn OnlinePCA::transform(Self, Array[Double]) -> Array[Double]
+pub fn OnlinePCA::update(Self, Array[Double]) -> Unit
+
+pub struct OnlinePlattScaler {
+  mut slope : Double
+  mut intercept : Double
+  learning_rate : Double
+  mut steps : Int
+}
+pub fn OnlinePlattScaler::intercept(Self) -> Double
+pub fn OnlinePlattScaler::new(learning_rate? : Double) -> Self
+pub fn OnlinePlattScaler::predict(Self, Double) -> Double
+pub fn OnlinePlattScaler::reset(Self) -> Unit
+pub fn OnlinePlattScaler::slope(Self) -> Double
+pub fn OnlinePlattScaler::steps(Self) -> Int
+pub fn OnlinePlattScaler::update(Self, Double, Double) -> Unit
+
+pub struct OnlinePoissonRegression {
+  weights : Array[Double]
+  learning_rate : Double
+  l2 : Double
+  mut steps : Int
+}
+pub fn OnlinePoissonRegression::loss(Self, Array[Double], Double) -> Double
+pub fn OnlinePoissonRegression::new(Int, learning_rate? : Double, l2? : Double) -> Self
+pub fn OnlinePoissonRegression::predict(Self, Array[Double]) -> Double
+pub fn OnlinePoissonRegression::rate(Self, Array[Double]) -> Double
+pub fn OnlinePoissonRegression::reset(Self) -> Unit
+pub fn OnlinePoissonRegression::steps(Self) -> Int
+pub fn OnlinePoissonRegression::update(Self, Array[Double], Double) -> Unit
+pub fn OnlinePoissonRegression::weights(Self) -> Array[Double]
+
+pub struct OnlineQuantileInterval {
+  mut lower : OnlineQuantileRegression
+  mut upper : OnlineQuantileRegression
+  mut observations : Int
+}
+pub fn OnlineQuantileInterval::contains(Self, Array[Double], Double) -> Bool
+pub fn OnlineQuantileInterval::new(Int, coverage? : Double, learning_rate? : Double) -> Self
+pub fn OnlineQuantileInterval::observations(Self) -> Int
+pub fn OnlineQuantileInterval::predict(Self, Array[Double]) -> (Double, Double)
+pub fn OnlineQuantileInterval::reset(Self) -> Unit
+pub fn OnlineQuantileInterval::update(Self, Array[Double], Double) -> Unit
+
+pub struct OnlineQuantileRegression {
+  weights : Array[Double]
+  learning_rate : Double
+  quantile : Double
+  l2 : Double
+  mut steps : Int
+}
+pub fn OnlineQuantileRegression::new(Int, quantile? : Double, learning_rate? : Double, l2? : Double) -> Self
+pub fn OnlineQuantileRegression::pinball_loss(Self, Array[Double], Double) -> Double
+pub fn OnlineQuantileRegression::predict(Self, Array[Double]) -> Double
+pub fn OnlineQuantileRegression::quantile(Self) -> Double
+pub fn OnlineQuantileRegression::update(Self, Array[Double], Double) -> Unit
+pub fn OnlineQuantileRegression::weights(Self) -> Array[Double]
+
+pub struct OnlineQuantileSketch {
+  capacity : Int
+  values : Array[Double]
+  mut seen : Int
+}
+pub fn OnlineQuantileSketch::median(Self) -> Double?
+pub fn OnlineQuantileSketch::new(capacity? : Int) -> Self
+pub fn OnlineQuantileSketch::quantile(Self, Double) -> Double?
+pub fn OnlineQuantileSketch::reset(Self) -> Unit
+pub fn OnlineQuantileSketch::seen(Self) -> Int
+pub fn OnlineQuantileSketch::update(Self, Double) -> Unit
+
+pub struct OnlineRidgeRegression {
+  weights : Array[Double]
+  diagonal : Array[Double]
+  learning_rate : Double
+  l2 : Double
+  mut intercept : Double
+  mut intercept_diagonal : Double
+  mut steps : Int
+}
+pub fn OnlineRidgeRegression::dimension(Self) -> Int
+pub fn OnlineRidgeRegression::intercept(Self) -> Double
+pub fn OnlineRidgeRegression::loss(Self, Array[Double], Double) -> Double
+pub fn OnlineRidgeRegression::new(Int, learning_rate? : Double, l2? : Double) -> Self
+pub fn OnlineRidgeRegression::predict(Self, Array[Double]) -> Double
+pub fn OnlineRidgeRegression::reset(Self) -> Unit
+pub fn OnlineRidgeRegression::residual(Self, Array[Double], Double) -> Double
+pub fn OnlineRidgeRegression::rmse(Self, Array[Array[Double]], Array[Double]) -> Double
+pub fn OnlineRidgeRegression::steps(Self) -> Int
+pub fn OnlineRidgeRegression::update(Self, Array[Double], Double) -> Unit
+pub fn OnlineRidgeRegression::update_weighted(Self, Array[Double], Double, Double) -> Unit
+pub fn OnlineRidgeRegression::weights(Self) -> Array[Double]
+
+pub struct OnlineSoftmaxRegression {
+  weights : Array[Array[Double]]
+  learning_rate : Double
+  l2 : Double
+  mut steps : Int
+}
+pub fn OnlineSoftmaxRegression::accuracy_on(Self, Array[Array[Double]], Array[Int]) -> Double
+pub fn OnlineSoftmaxRegression::classes(Self) -> Int
+pub fn OnlineSoftmaxRegression::dimension(Self) -> Int
+pub fn OnlineSoftmaxRegression::logits(Self, Array[Double]) -> Array[Double]
+pub fn OnlineSoftmaxRegression::loss(Self, Array[Double], Int) -> Double
+pub fn OnlineSoftmaxRegression::new(Int, Int, learning_rate? : Double, l2? : Double) -> Self
+pub fn OnlineSoftmaxRegression::predict_class(Self, Array[Double]) -> Int?
+pub fn OnlineSoftmaxRegression::predict_proba(Self, Array[Double]) -> Array[Double]
+pub fn OnlineSoftmaxRegression::predict_top_k(Self, Array[Double], Int) -> Array[Int]
+pub fn OnlineSoftmaxRegression::reset(Self) -> Unit
+pub fn OnlineSoftmaxRegression::steps(Self) -> Int
+pub fn OnlineSoftmaxRegression::top_k_accuracy(Self, Array[Array[Double]], Array[Int], Int) -> Double
+pub fn OnlineSoftmaxRegression::update(Self, Array[Double], Int) -> Bool
+pub fn OnlineSoftmaxRegression::update_weighted(Self, Array[Double], Int, Double) -> Bool
+pub fn OnlineSoftmaxRegression::weight_norm_squared(Self) -> Double
+pub fn OnlineSoftmaxRegression::weights(Self) -> Array[Array[Double]]
+
+pub struct OnlineStumpEnsemble {
+  stumps : Array[OnlineDecisionStump]
+  rng : DeterministicRng
+  mut updates : Int
+}
+pub fn OnlineStumpEnsemble::accuracy(Self) -> Double
+pub fn OnlineStumpEnsemble::feature_indices(Self) -> Array[Int]
+pub fn OnlineStumpEnsemble::new(Int, Int, seed? : UInt64) -> Self
+pub fn OnlineStumpEnsemble::predict(Self, Array[Double]) -> Double
+pub fn OnlineStumpEnsemble::predict_label(Self, Array[Double], threshold? : Double) -> Double
+pub fn OnlineStumpEnsemble::reset(Self) -> Unit
+pub fn OnlineStumpEnsemble::size(Self) -> Int
+pub fn OnlineStumpEnsemble::thresholds(Self) -> Array[Double]
+pub fn OnlineStumpEnsemble::update(Self, Array[Double], Double, weight? : Double) -> Unit
+pub fn OnlineStumpEnsemble::updates(Self) -> Int
+
+pub struct OptimizerStatistics {
+  mut steps : Int
+  mut gradient_l1 : Double
+  mut gradient_l2 : Double
+  mut update_l2 : Double
+}
+pub fn OptimizerStatistics::mean_gradient_l1(Self) -> Double
+pub fn OptimizerStatistics::mean_gradient_l2(Self) -> Double
+pub fn OptimizerStatistics::mean_update_l2(Self) -> Double
+pub fn OptimizerStatistics::new() -> Self
+pub fn OptimizerStatistics::record(Self, Array[Double], Array[Double]) -> Unit
+pub fn OptimizerStatistics::steps(Self) -> Int
+
+pub struct PageHinkleyDetector {
+  threshold : Double
+  delta : Double
+  mut mean : Double
+  mut cumulative : Double
+  mut minimum : Double
+  mut count : Double
+}
+pub fn PageHinkleyDetector::count(Self) -> Double
+pub fn PageHinkleyDetector::mean(Self) -> Double
+pub fn PageHinkleyDetector::new(threshold? : Double, delta? : Double) -> Self
+pub fn PageHinkleyDetector::reset(Self) -> Unit
+pub fn PageHinkleyDetector::update(Self, Double) -> Bool
+
+pub struct PairwiseRanker {
+  weights : Array[Double]
+  learning_rate : Double
+  margin : Double
+  l2 : Double
+  mut updates : Int
+}
+pub fn PairwiseRanker::compare(Self, Array[Double], Array[Double]) -> Double
+pub fn PairwiseRanker::dimension(Self) -> Int
+pub fn PairwiseRanker::loss(Self, Array[Double], Array[Double]) -> Double
+pub fn PairwiseRanker::new(Int, learning_rate? : Double, margin? : Double, l2? : Double) -> Self
+pub fn PairwiseRanker::reset(Self) -> Unit
+pub fn PairwiseRanker::score(Self, Array[Double]) -> Double
+pub fn PairwiseRanker::update(Self, Array[Double], Array[Double]) -> Bool
+pub fn PairwiseRanker::updates(Self) -> Int
+pub fn PairwiseRanker::weights(Self) -> Array[Double]
+
+pub struct PassiveAggressiveRegressor {
+  weights : Array[Double]
+  aggressiveness : Double
+  epsilon : Double
+  l2 : Double
+  mut updates : Int
+}
+pub fn PassiveAggressiveRegressor::new(Int, aggressiveness? : Double, epsilon? : Double, l2? : Double) -> Self
+pub fn PassiveAggressiveRegressor::predict(Self, Array[Double]) -> Double
+pub fn PassiveAggressiveRegressor::reset(Self) -> Unit
+pub fn PassiveAggressiveRegressor::update(Self, Array[Double], Double) -> Bool
+pub fn PassiveAggressiveRegressor::updates(Self) -> Int
+pub fn PassiveAggressiveRegressor::weights(Self) -> Array[Double]
+
+pub struct PredictionGuard {
+  lower : Double
+  upper : Double
+  mut repaired : Int
+}
+pub fn PredictionGuard::apply(Self, Double) -> Double
+pub fn PredictionGuard::new(Double, Double) -> Self
+pub fn PredictionGuard::repaired(Self) -> Int
+pub fn PredictionGuard::reset(Self) -> Unit
+
+pub struct PredictionRequest {
+  request_id : String
+  features : Array[Double]
+  timestamp : Int64
+  group : String
+}
+pub fn PredictionRequest::features(Self) -> Array[Double]
+pub fn PredictionRequest::group(Self) -> String
+pub fn PredictionRequest::new(String, Array[Double], Int64, group? : String) -> Self
+pub fn PredictionRequest::request_id(Self) -> String
+pub fn PredictionRequest::timestamp(Self) -> Int64
+
+pub struct PredictionResponse {
+  request_id : String
+  prediction : Double
+  probability : Double
+  model_version : String
+  latency_ms : Double
+  accepted : Bool
+}
+pub fn PredictionResponse::accepted(Self) -> Bool
+pub fn PredictionResponse::latency_ms(Self) -> Double
+pub fn PredictionResponse::model_version(Self) -> String
+pub fn PredictionResponse::new(String, Double, String, latency_ms? : Double, accepted? : Bool) -> Self
+pub fn PredictionResponse::prediction(Self) -> Double
+pub fn PredictionResponse::probability(Self) -> Double
+pub fn PredictionResponse::request_id(Self) -> String
+
+pub struct PredictionSet {
+  labels : Array[Int]
+  probabilities : Array[Double]
+  threshold : Double
+}
+pub fn PredictionSet::contains(Self, Int) -> Bool
+pub fn PredictionSet::labels(Self) -> Array[Int]
+pub fn PredictionSet::new(Array[Double], threshold? : Double) -> Self
+pub fn PredictionSet::probability(Self, Int) -> Double
+pub fn PredictionSet::size(Self) -> Int
+
+pub struct PrivacyBudget {
+  total : Double
+  mut remaining_budget : Double
+  mut queries : Int
+  mut rejected : Int
+}
+pub fn PrivacyBudget::consume(Self, Double) -> Bool
+pub fn PrivacyBudget::exhausted(Self) -> Bool
+pub fn PrivacyBudget::new(Double) -> Self
+pub fn PrivacyBudget::queries(Self) -> Int
+pub fn PrivacyBudget::rejected(Self) -> Int
+pub fn PrivacyBudget::remaining(Self) -> Double
+pub fn PrivacyBudget::reset(Self) -> Unit
+pub fn PrivacyBudget::spent(Self) -> Double
+pub fn PrivacyBudget::total(Self) -> Double
+
+pub struct PromotionGate {
+  minimum_auc : Double
+  maximum_log_loss : Double
+  minimum_samples : Int
+}
+pub fn PromotionGate::accept(Self, EvaluationSummary) -> Bool
+pub fn PromotionGate::new(minimum_auc? : Double, maximum_log_loss? : Double, minimum_samples? : Int) -> Self
+
+pub struct QualityGate {
+  dimension : Int
+  min_weight : Double
+  max_weight : Double
+  allow_nan_like : Bool
+}
+pub fn QualityGate::dimension(Self) -> Int
+pub fn QualityGate::new(Int, min_weight? : Double, max_weight? : Double) -> Self
+pub fn QualityGate::validate_features(Self, Array[Double]) -> ValidationReport
+pub fn QualityGate::validate_sample(Self, Array[Double], Double) -> ValidationReport
+pub fn QualityGate::validate_weight(Self, Double) -> ValidationReport
+
+pub struct QuantileBinner {
+  boundaries : Array[Double]
+}
+pub fn QuantileBinner::bin(Self, Double) -> Int
+pub fn QuantileBinner::bins(Self) -> Int
+pub fn QuantileBinner::boundaries(Self) -> Array[Double]
+pub fn QuantileBinner::new(Array[Double]) -> Self
+pub fn QuantileBinner::one_hot(Self, Double) -> Array[Double]
+
 pub struct RLS {
   weights : Array[Double]
   p : Array[Array[Double]]
@@ -41,6 +2142,189 @@ pub fn RLS::new(Int, lambda? : Double, alpha? : Double) -> Self
 pub fn RLS::predict(Self, Array[Double]) -> Double
 pub fn RLS::update(Self, Array[Double], Double) -> Unit
 
+pub struct RMSPropOptimizer {
+  learning_rate : Double
+  decay : Double
+  epsilon : Double
+  mean_square : Array[Double]
+  clipper : GradientClipper
+  mut step_count : Int
+}
+pub fn RMSPropOptimizer::apply(Self, Array[Double], Array[Double]) -> Unit
+pub fn RMSPropOptimizer::mean_square(Self) -> Array[Double]
+pub fn RMSPropOptimizer::new(Int, learning_rate? : Double, decay? : Double, epsilon? : Double, clipper? : GradientClipper) -> Self
+pub fn RMSPropOptimizer::reset(Self) -> Unit
+pub fn RMSPropOptimizer::update(Self, Array[Double]) -> Array[Double]
+
+pub struct RandomFourierFeatures {
+  input_dimension : Int
+  output_dimension : Int
+  weights : Array[Array[Double]]
+  phases : Array[Double]
+  scale : Double
+  rng : DeterministicRng
+}
+pub fn RandomFourierFeatures::input_dimension(Self) -> Int
+pub fn RandomFourierFeatures::new(Int, Int, width? : Double, seed? : UInt64) -> Self
+pub fn RandomFourierFeatures::output_dimension(Self) -> Int
+pub fn RandomFourierFeatures::transform(Self, Array[Double]) -> Array[Double]
+pub fn RandomFourierFeatures::weight_matrix(Self) -> Array[Array[Double]]
+
+pub struct RankingMetrics {
+  mut queries : Double
+  mut reciprocal_rank : Double
+  mut ndcg_sum : Double
+  hits : Array[Double]
+}
+pub fn RankingMetrics::mrr(Self) -> Double
+pub fn RankingMetrics::ndcg(Self) -> Double
+pub fn RankingMetrics::new(max_k? : Int) -> Self
+pub fn RankingMetrics::observe(Self, Array[Double]) -> Unit
+pub fn RankingMetrics::queries(Self) -> Double
+pub fn RankingMetrics::recall_at(Self, Int) -> Double
+pub fn RankingMetrics::reset(Self) -> Unit
+
+pub struct RateLimiter {
+  limit : Int
+  period : Int
+  mut ticks : Int
+  mut accepted : Int
+}
+pub fn RateLimiter::accepted(Self) -> Int
+pub fn RateLimiter::allow(Self) -> Bool
+pub fn RateLimiter::new(Int, Int) -> Self
+pub fn RateLimiter::reset(Self) -> Unit
+
+pub struct RegressionMetrics {
+  mut count : Double
+  mut absolute_error : Double
+  mut squared_error : Double
+  mut label_sum : Double
+  mut label_squared_sum : Double
+  mut minimum_error : Double
+  mut maximum_error : Double
+}
+pub fn RegressionMetrics::count(Self) -> Double
+pub fn RegressionMetrics::mae(Self) -> Double
+pub fn RegressionMetrics::maximum_error(Self) -> Double
+pub fn RegressionMetrics::minimum_error(Self) -> Double
+pub fn RegressionMetrics::mse(Self) -> Double
+pub fn RegressionMetrics::new() -> Self
+pub fn RegressionMetrics::r2(Self) -> Double
+pub fn RegressionMetrics::reset(Self) -> Unit
+pub fn RegressionMetrics::rmse(Self) -> Double
+pub fn RegressionMetrics::update(Self, Double, Double, weight? : Double) -> Unit
+
+pub struct Regularizer {
+  l1 : Double
+  l2 : Double
+}
+pub fn Regularizer::gradient(Self, Array[Double], Int) -> Double
+pub fn Regularizer::new(l1? : Double, l2? : Double) -> Self
+pub fn Regularizer::penalty(Self, Array[Double]) -> Double
+pub fn Regularizer::proximal(Self, Double, Double) -> Double
+
+pub struct ReproducibilityManifest {
+  model : String
+  version : String
+  source_checksum : String
+  data_checksum : String
+  seed : Int
+  parameters : Map[String, String]
+}
+pub fn ReproducibilityManifest::data_checksum(Self) -> String
+pub fn ReproducibilityManifest::fingerprint(Self) -> String
+pub fn ReproducibilityManifest::model(Self) -> String
+pub fn ReproducibilityManifest::new(String, String, String, String, Int) -> Self
+pub fn ReproducibilityManifest::parameter(Self, String) -> String
+pub fn ReproducibilityManifest::parameter_count(Self) -> Int
+pub fn ReproducibilityManifest::seed(Self) -> Int
+pub fn ReproducibilityManifest::set(Self, String, String) -> Unit
+pub fn ReproducibilityManifest::source_checksum(Self) -> String
+pub fn ReproducibilityManifest::version(Self) -> String
+
+pub struct RequestBatcher {
+  capacity : Int
+  requests : Array[PredictionRequest]
+  mut flushed : Int
+  mut dropped : Int
+}
+pub fn RequestBatcher::add(Self, PredictionRequest) -> Bool
+pub fn RequestBatcher::dropped(Self) -> Int
+pub fn RequestBatcher::flush(Self) -> Array[PredictionRequest]
+pub fn RequestBatcher::flushed(Self) -> Int
+pub fn RequestBatcher::new(Int) -> Self
+pub fn RequestBatcher::pending(Self) -> Int
+pub fn RequestBatcher::ready(Self) -> Bool
+pub fn RequestBatcher::reset(Self) -> Unit
+
+pub struct ReservoirSampler {
+  capacity : Int
+  values : Array[Double]
+  mut seen : Int
+  rng : DeterministicRng
+}
+pub fn ReservoirSampler::capacity(Self) -> Int
+pub fn ReservoirSampler::new(Int, seed? : UInt64) -> Self
+pub fn ReservoirSampler::observe(Self, Double) -> Bool
+pub fn ReservoirSampler::reset(Self) -> Unit
+pub fn ReservoirSampler::sample(Self) -> Array[Double]
+pub fn ReservoirSampler::seen(Self) -> Int
+
+pub struct RollbackPolicy {
+  minimum_accuracy : Double
+  maximum_loss : Double
+  maximum_error_rate : Double
+}
+pub fn RollbackPolicy::new(minimum_accuracy? : Double, maximum_loss? : Double, maximum_error_rate? : Double) -> Self
+pub fn RollbackPolicy::should_rollback(Self, Double, Double, Double) -> Bool
+
+pub struct RollingWindow {
+  capacity : Int
+  features : Array[Array[Double]]
+  labels : Array[Double]
+  weights : Array[Double]
+  mut dropped : Int
+}
+pub fn RollingWindow::batch(Self) -> DataBatch
+pub fn RollingWindow::capacity(Self) -> Int
+pub fn RollingWindow::clear(Self) -> Unit
+pub fn RollingWindow::dropped(Self) -> Int
+pub fn RollingWindow::new(Int) -> Self
+pub fn RollingWindow::push(Self, Array[Double], Double, weight? : Double) -> Bool
+pub fn RollingWindow::size(Self) -> Int
+
+pub struct RunningMean {
+  mut count : Double
+  mut mean : Double
+}
+pub fn RunningMean::count(Self) -> Double
+pub fn RunningMean::merge(Self, Self) -> Unit
+pub fn RunningMean::new() -> Self
+pub fn RunningMean::update(Self, Double) -> Unit
+pub fn RunningMean::value(Self) -> Double
+
+pub struct RunningMoments {
+  mut count : Double
+  mut mean : Double
+  mut m2 : Double
+  mut minimum : Double
+  mut maximum : Double
+}
+pub fn RunningMoments::count(Self) -> Double
+pub fn RunningMoments::maximum(Self) -> Double
+pub fn RunningMoments::mean(Self) -> Double
+pub fn RunningMoments::merge(Self, Self) -> Unit
+pub fn RunningMoments::minimum(Self) -> Double
+pub fn RunningMoments::new() -> Self
+pub fn RunningMoments::population_variance(Self) -> Double
+pub fn RunningMoments::range(Self) -> Double
+pub fn RunningMoments::reset(Self) -> Unit
+pub fn RunningMoments::standard_deviation(Self) -> Double
+pub fn RunningMoments::update(Self, Double, weight? : Double) -> Unit
+pub fn RunningMoments::variance(Self) -> Double
+pub fn RunningMoments::z_score(Self, Double) -> Double
+
 pub struct SGDLogisticRegression {
   weights : Array[Double]
   alpha : Double
@@ -49,13 +2333,422 @@ pub fn SGDLogisticRegression::new(Int, alpha? : Double) -> Self
 pub fn SGDLogisticRegression::predict(Self, Array[Double]) -> Double
 pub fn SGDLogisticRegression::update(Self, Array[Double], Double) -> Unit
 
+pub struct SeasonalMean {
+  sums : Array[Double]
+  counts : Array[Double]
+  mut observations : Int
+}
+pub fn SeasonalMean::forecast(Self, Int) -> Array[Double]
+pub fn SeasonalMean::mean_at(Self, Int) -> Double
+pub fn SeasonalMean::new(Int) -> Self
+pub fn SeasonalMean::observations(Self) -> Int
+pub fn SeasonalMean::period(Self) -> Int
+pub fn SeasonalMean::reset(Self) -> Unit
+pub fn SeasonalMean::update(Self, Double) -> Double
+
+pub struct SequenceFeatureBuilder {
+  lags : Int
+  include_delta : Bool
+  include_mean : Bool
+  include_variance : Bool
+  window : SequenceWindow
+}
+pub fn SequenceFeatureBuilder::feature_count(Self) -> Int
+pub fn SequenceFeatureBuilder::new(Int, include_delta? : Bool, include_mean? : Bool, include_variance? : Bool) -> Self
+pub fn SequenceFeatureBuilder::reset(Self) -> Unit
+pub fn SequenceFeatureBuilder::transform(Self, Double) -> Array[Double]
+
+pub struct SequenceWindow {
+  capacity : Int
+  values : Array[Double]
+  mut total : Double
+  mut sum_squares : Double
+}
+pub fn SequenceWindow::capacity(Self) -> Int
+pub fn SequenceWindow::clear(Self) -> Unit
+pub fn SequenceWindow::last(Self) -> Double
+pub fn SequenceWindow::mean(Self) -> Double
+pub fn SequenceWindow::new(Int) -> Self
+pub fn SequenceWindow::push(Self, Double) -> Unit
+pub fn SequenceWindow::size(Self) -> Int
+pub fn SequenceWindow::values(Self) -> Array[Double]
+pub fn SequenceWindow::variance(Self) -> Double
+
+pub struct ServingStats {
+  mut requests : Int
+  mut successes : Int
+  mut failures : Int
+  mut total_latency : Double
+  mut max_latency : Double
+  mut bytes : Int
+}
+pub fn ServingStats::bytes(Self) -> Int
+pub fn ServingStats::max_latency(Self) -> Double
+pub fn ServingStats::mean_latency(Self) -> Double
+pub fn ServingStats::new() -> Self
+pub fn ServingStats::observe(Self, PredictionResponse, payload_bytes? : Int) -> Unit
+pub fn ServingStats::requests(Self) -> Int
+pub fn ServingStats::reset(Self) -> Unit
+pub fn ServingStats::success_rate(Self) -> Double
+
+pub struct ShadowEvaluator {
+  primary_version : String
+  shadow_version : String
+  mut comparisons : Int
+  mut disagreements : Int
+  mut absolute_difference : Double
+}
+pub fn ShadowEvaluator::comparisons(Self) -> Int
+pub fn ShadowEvaluator::disagreement_rate(Self) -> Double
+pub fn ShadowEvaluator::disagreements(Self) -> Int
+pub fn ShadowEvaluator::mean_absolute_difference(Self) -> Double
+pub fn ShadowEvaluator::new(String, String) -> Self
+pub fn ShadowEvaluator::observe(Self, Double, Double, tolerance? : Double) -> Bool
+pub fn ShadowEvaluator::reset(Self) -> Unit
+pub fn ShadowEvaluator::versions(Self) -> (String, String)
+
+pub struct SnapshotCatalog {
+  snapshots : Map[String, SnapshotEnvelope]
+  mut writes : Int
+}
+pub fn SnapshotCatalog::clear(Self) -> Unit
+pub fn SnapshotCatalog::get(Self, String) -> SnapshotEnvelope?
+pub fn SnapshotCatalog::keys(Self) -> Array[String]
+pub fn SnapshotCatalog::new() -> Self
+pub fn SnapshotCatalog::put(Self, String, SnapshotEnvelope) -> Bool
+pub fn SnapshotCatalog::size(Self) -> Int
+pub fn SnapshotCatalog::writes(Self) -> Int
+
+pub struct SnapshotEnvelope {
+  schema : String
+  model : String
+  version : String
+  payload : String
+  checksum : String
+} derive(ToJson, @debug.Debug, @json.FromJson)
+pub fn SnapshotEnvelope::checksum(Self) -> String
+pub fn SnapshotEnvelope::is_compatible(Self, String, String) -> Bool
+pub fn SnapshotEnvelope::model(Self) -> String
+pub fn SnapshotEnvelope::new(String, String, String, String, String) -> Self
+pub fn SnapshotEnvelope::payload(Self) -> String
+pub fn SnapshotEnvelope::schema(Self) -> String
+pub fn SnapshotEnvelope::to_json_string(Self) -> String
+pub fn SnapshotEnvelope::version(Self) -> String
+
+pub struct SparseAccumulator {
+  dimension : Int
+  values : Map[Int, Double]
+}
+pub fn SparseAccumulator::add(Self, Int, Double) -> Bool
+pub fn SparseAccumulator::clear(Self) -> Unit
+pub fn SparseAccumulator::dimension(Self) -> Int
+pub fn SparseAccumulator::get(Self, Int) -> Double
+pub fn SparseAccumulator::new(Int) -> Self
+pub fn SparseAccumulator::to_vector(Self) -> SparseVector
+
+pub struct SparseAdagradClassifier {
+  weights : Array[Double]
+  accumulator : Array[Double]
+  learning_rate : Double
+  epsilon : Double
+  l2 : Double
+  mut steps : Int
+}
+pub fn SparseAdagradClassifier::new(Int, learning_rate? : Double, epsilon? : Double, l2? : Double) -> Self
+pub fn SparseAdagradClassifier::predict(Self, SparseVector) -> Double
+pub fn SparseAdagradClassifier::reset(Self) -> Unit
+pub fn SparseAdagradClassifier::steps(Self) -> Int
+pub fn SparseAdagradClassifier::update(Self, SparseVector, Double) -> Unit
+pub fn SparseAdagradClassifier::weight(Self, Int) -> Double
+pub fn SparseAdagradClassifier::weights(Self) -> SparseVector
+
+pub struct SparseEntry {
+  index : Int
+  value : Double
+} derive(ToJson, @debug.Debug, @json.FromJson)
+pub fn SparseEntry::index(Self) -> Int
+pub fn SparseEntry::new(Int, Double) -> Self
+pub fn SparseEntry::value(Self) -> Double
+
+pub struct SparseFTRL {
+  dimension : Int
+  alpha : Double
+  beta : Double
+  l1 : Double
+  l2 : Double
+  z : Array[Double]
+  n : Array[Double]
+  mut steps : Int
+}
+pub fn SparseFTRL::dimension(Self) -> Int
+pub fn SparseFTRL::new(Int, alpha? : Double, beta? : Double, l1? : Double, l2? : Double) -> Self
+pub fn SparseFTRL::non_zero_weights(Self, tolerance? : Double) -> SparseVector
+pub fn SparseFTRL::predict(Self, SparseVector) -> Double
+pub fn SparseFTRL::reset(Self) -> Unit
+pub fn SparseFTRL::steps(Self) -> Int
+pub fn SparseFTRL::update(Self, SparseVector, Double) -> Unit
+pub fn SparseFTRL::weight(Self, Int) -> Double
+
+pub struct SparseVector {
+  dimension : Int
+  entries : Array[SparseEntry]
+} derive(ToJson, @debug.Debug, @json.FromJson)
+pub fn SparseVector::add(Self, Self) -> Self
+pub fn SparseVector::contains(Self, Int) -> Bool
+pub fn SparseVector::cosine(Self, Self) -> Double
+pub fn SparseVector::dimension(Self) -> Int
+pub fn SparseVector::distance_squared(Self, Self) -> Double
+pub fn SparseVector::dot_dense(Self, Array[Double]) -> Double
+pub fn SparseVector::dot_sparse(Self, Self) -> Double
+pub fn SparseVector::entries(Self) -> Array[SparseEntry]
+pub fn SparseVector::from_dense(Array[Double], threshold? : Double) -> Self
+pub fn SparseVector::from_entries(Int, Array[SparseEntry]) -> Self
+pub fn SparseVector::get(Self, Int) -> Double
+pub fn SparseVector::is_empty(Self) -> Bool
+pub fn SparseVector::is_sorted(Self) -> Bool
+pub fn SparseVector::l1_norm(Self) -> Double
+pub fn SparseVector::l2_norm(Self) -> Double
+pub fn SparseVector::map(Self, (Double) -> Double) -> Self
+pub fn SparseVector::max_abs(Self) -> Double
+pub fn SparseVector::new(Int) -> Self
+pub fn SparseVector::nnz(Self) -> Int
+pub fn SparseVector::normalize(Self) -> Self
+pub fn SparseVector::scale(Self, Double) -> Self
+pub fn SparseVector::set(Self, Int, Double) -> Self
+pub fn SparseVector::subtract(Self, Self) -> Self
+pub fn SparseVector::threshold(Self, Double) -> Self
+pub fn SparseVector::to_dense(Self) -> Array[Double]
+
+pub struct StabilityTracker {
+  previous : Array[Double]
+  mut observations : Int
+  mut drift : Double
+}
+pub fn StabilityTracker::mean_drift(Self) -> Double
+pub fn StabilityTracker::new(Int) -> Self
+pub fn StabilityTracker::observations(Self) -> Int
+pub fn StabilityTracker::observe(Self, Array[Double]) -> Double
+pub fn StabilityTracker::reset(Self) -> Unit
+
 pub struct Standardizer {
   mut count : Double
   mean : Array[Double]
   m2 : Array[Double]
 } derive(ToJson, @json.FromJson)
+pub fn Standardizer::count(Self) -> Double
+pub fn Standardizer::mean(Self) -> Array[Double]
 pub fn Standardizer::new(Int) -> Self
+pub fn Standardizer::reset(Self) -> Unit
 pub fn Standardizer::update_and_transform(Self, Array[Double]) -> Array[Double]
+pub fn Standardizer::variance(Self) -> Array[Double]
+
+pub struct StratifiedSampler {
+  capacity_per_class : Int
+  samples : Map[Int, Array[Array[Double]]]
+  mut seen : Int
+  rng : DeterministicRng
+}
+pub fn StratifiedSampler::class_count(Self, Int) -> Int
+pub fn StratifiedSampler::classes(Self) -> Array[Int]
+pub fn StratifiedSampler::new(Int, seed? : UInt64) -> Self
+pub fn StratifiedSampler::observe(Self, Int, Array[Double]) -> Bool
+pub fn StratifiedSampler::reset(Self) -> Unit
+pub fn StratifiedSampler::samples(Self, Int) -> Array[Array[Double]]
+pub fn StratifiedSampler::seen(Self) -> Int
+
+pub struct StreamCounters {
+  mut rows : Int
+  mut accepted : Int
+  mut rejected : Int
+  mut positive : Int
+  mut negative : Int
+}
+pub fn StreamCounters::acceptance_rate(Self) -> Double
+pub fn StreamCounters::accepted(Self) -> Int
+pub fn StreamCounters::new() -> Self
+pub fn StreamCounters::observe(Self, Bool, label? : Double) -> Unit
+pub fn StreamCounters::rejected(Self) -> Int
+pub fn StreamCounters::rows(Self) -> Int
+
+pub struct StreamWatermark {
+  mut current : Int64
+  allowed_lateness : Int64
+  mut late_events : Int
+}
+pub fn StreamWatermark::current(Self) -> Int64
+pub fn StreamWatermark::late_events(Self) -> Int
+pub fn StreamWatermark::new(Int64) -> Self
+pub fn StreamWatermark::observe(Self, Int64) -> Bool
+pub fn StreamWatermark::reset(Self) -> Unit
+
+pub struct TargetEncoder {
+  sums : Map[String, Double]
+  counts : Map[String, Double]
+  mut prior : RunningMean
+  smoothing : Double
+}
+pub fn TargetEncoder::encode(Self, String) -> Double
+pub fn TargetEncoder::known_categories(Self) -> Int
+pub fn TargetEncoder::new(smoothing? : Double) -> Self
+pub fn TargetEncoder::reset(Self) -> Unit
+pub fn TargetEncoder::update(Self, String, Double, weight? : Double) -> Unit
+
+pub struct TextStatistics {
+  mut documents : Int
+  mut tokens : Int
+  vocabulary : Map[String, Int]
+}
+pub fn TextStatistics::documents(Self) -> Int
+pub fn TextStatistics::frequency(Self, String) -> Int
+pub fn TextStatistics::new() -> Self
+pub fn TextStatistics::observe(Self, Array[String]) -> Unit
+pub fn TextStatistics::reset(Self) -> Unit
+pub fn TextStatistics::tokens(Self) -> Int
+pub fn TextStatistics::top_words(Self, Int) -> Array[String]
+pub fn TextStatistics::vocabulary_size(Self) -> Int
+
+pub struct ThresholdOptimizer {
+  costs : ClassCost
+  minimum : Double
+  maximum : Double
+  steps : Int
+  mut best_threshold : Double
+  mut best_cost : Double
+}
+pub fn ThresholdOptimizer::cost(Self) -> Double
+pub fn ThresholdOptimizer::fit(Self, Array[Double], Array[Double]) -> Double
+pub fn ThresholdOptimizer::new(costs? : ClassCost, minimum? : Double, maximum? : Double, steps? : Int) -> Self
+pub fn ThresholdOptimizer::reset(Self) -> Unit
+pub fn ThresholdOptimizer::threshold(Self) -> Double
+
+pub struct ThroughputTracker {
+  capacity : Int
+  events : SequenceWindow
+  mut accepted : Int
+  mut dropped : Int
+}
+pub fn ThroughputTracker::accepted(Self) -> Int
+pub fn ThroughputTracker::dropped(Self) -> Int
+pub fn ThroughputTracker::new(capacity? : Int) -> Self
+pub fn ThroughputTracker::observe(Self, Int64) -> Bool
+pub fn ThroughputTracker::rate(Self, Double) -> Double
+
+pub struct TimeWindowAggregate {
+  start : Int64
+  end : Int64
+  mut events : Int
+  mut positives : Double
+  mut weight : Double
+  loss : RegressionMetrics
+}
+pub fn TimeWindowAggregate::contains(Self, Int64) -> Bool
+pub fn TimeWindowAggregate::events(Self) -> Int
+pub fn TimeWindowAggregate::mae(Self) -> Double
+pub fn TimeWindowAggregate::new(Int64, Int64) -> Self
+pub fn TimeWindowAggregate::observe(Self, TrainingEvent, Double) -> Bool
+pub fn TimeWindowAggregate::rmse(Self) -> Double
+pub fn TimeWindowAggregate::weighted_positive_rate(Self) -> Double
+
+pub struct TopKMetrics {
+  mut total : Double
+  hits : Array[Double]
+}
+pub fn TopKMetrics::accuracy(Self, Int) -> Double
+pub fn TopKMetrics::new(max_k? : Int) -> Self
+pub fn TopKMetrics::reset(Self) -> Unit
+pub fn TopKMetrics::total(Self) -> Double
+pub fn TopKMetrics::update(Self, Array[Int], Int) -> Unit
+
+pub struct TrafficSplitter {
+  buckets : Map[String, Double]
+  default_version : String
+  mut assigned : Int
+}
+pub fn TrafficSplitter::assigned(Self) -> Int
+pub fn TrafficSplitter::new(String) -> Self
+pub fn TrafficSplitter::reset(Self) -> Unit
+pub fn TrafficSplitter::route(Self, Int) -> String
+pub fn TrafficSplitter::set(Self, String, Double) -> Unit
+pub fn TrafficSplitter::share(Self, String) -> Double
+
+pub struct TrainingEvent {
+  id : String
+  timestamp : Int64
+  features : Array[Double]
+  label : Double
+  weight : Double
+} derive(ToJson, @debug.Debug, @json.FromJson)
+pub fn TrainingEvent::features(Self) -> Array[Double]
+pub fn TrainingEvent::id(Self) -> String
+pub fn TrainingEvent::label(Self) -> Double
+pub fn TrainingEvent::new(String, Int64, Array[Double], Double, weight? : Double) -> Self
+pub fn TrainingEvent::timestamp(Self) -> Int64
+pub fn TrainingEvent::weight(Self) -> Double
+
+pub struct TrainingReport {
+  mut samples : Int
+  mut accepted : Int
+  mut rejected : Int
+  mut total_loss : Double
+  mut final_loss : Double
+  mut elapsed_steps : Int
+} derive(ToJson, @debug.Debug, @json.FromJson)
+pub fn TrainingReport::accepted(Self) -> Int
+pub fn TrainingReport::final_loss(Self) -> Double
+pub fn TrainingReport::mean_loss(Self) -> Double
+pub fn TrainingReport::new() -> Self
+pub fn TrainingReport::record(Self, Bool, Double) -> Unit
+pub fn TrainingReport::rejected(Self) -> Int
+pub fn TrainingReport::reset(Self) -> Unit
+pub fn TrainingReport::samples(Self) -> Int
+
+pub struct ValidationReport {
+  valid : Bool
+  message : String
+} derive(Eq, ToJson, @debug.Debug, @json.FromJson)
+pub fn ValidationReport::error(String) -> Self
+pub fn ValidationReport::is_valid(Self) -> Bool
+pub fn ValidationReport::message(Self) -> String
+pub fn ValidationReport::ok() -> Self
+
+pub struct VectorMoments {
+  moments : Array[RunningMoments]
+}
+pub fn VectorMoments::dimension(Self) -> Int
+pub fn VectorMoments::mean(Self) -> Array[Double]
+pub fn VectorMoments::moment(Self, Int) -> RunningMoments?
+pub fn VectorMoments::new(Int) -> Self
+pub fn VectorMoments::reset(Self) -> Unit
+pub fn VectorMoments::standardize(Self, Array[Double]) -> Array[Double]
+pub fn VectorMoments::update(Self, Array[Double], weight? : Double) -> Unit
+pub fn VectorMoments::variance(Self) -> Array[Double]
+
+pub struct WeightedHistogram {
+  lower : Double
+  upper : Double
+  bins : Array[Double]
+  mut total : Double
+}
+pub fn WeightedHistogram::counts(Self) -> Array[Double]
+pub fn WeightedHistogram::new(lower? : Double, upper? : Double, bins? : Int) -> Self
+pub fn WeightedHistogram::observe(Self, Double, weight? : Double) -> Unit
+pub fn WeightedHistogram::probabilities(Self) -> Array[Double]
+pub fn WeightedHistogram::quantile(Self, Double) -> Double
+pub fn WeightedHistogram::reset(Self) -> Unit
+pub fn WeightedHistogram::total(Self) -> Double
+
+pub struct WeightedProbabilityEnsemble {
+  weights : Array[Double]
+  mut observations : Int
+}
+pub fn WeightedProbabilityEnsemble::experts(Self) -> Int
+pub fn WeightedProbabilityEnsemble::new(Int) -> Self
+pub fn WeightedProbabilityEnsemble::normalized_weights(Self) -> Array[Double]
+pub fn WeightedProbabilityEnsemble::observations(Self) -> Int
+pub fn WeightedProbabilityEnsemble::predict(Self, Array[Double]) -> Double
+pub fn WeightedProbabilityEnsemble::reset(Self) -> Unit
+pub fn WeightedProbabilityEnsemble::update(Self, Array[Double], Double, learning_rate? : Double) -> Unit
+pub fn WeightedProbabilityEnsemble::weights(Self) -> Array[Double]
 
 // Type aliases
 
@@ -69,4 +2762,3 @@ pub trait Snapshot {
   fn to_bytes(Self) -> Bytes
   fn from_bytes(Self, Bytes) -> Bool
 }
-

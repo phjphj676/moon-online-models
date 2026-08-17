@@ -1,6 +1,6 @@
 name = "phjphj676/moon-online-models"
 
-version = "0.1.0"
+version = "0.2.0"
 
 readme = "README.md"
 
@@ -13,6 +13,10 @@ keywords = [
   "regression",
   "online-learning",
   "incremental-learning",
+  "classification",
+  "streaming-data",
+  "model-monitoring",
+  "moonbit",
 ]
 
-description = "MoonBit online regression and incremental learning library, featuring Recursive Least Squares and Online Logistic Regression."
+description = "A native MoonBit toolkit for online learning, sparse and dense models, streaming features, evaluation, monitoring, serving, and reproducible model lifecycle workflows."
