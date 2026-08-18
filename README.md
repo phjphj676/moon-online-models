@@ -1,38 +1,52 @@
 # moon-online-models
 
-`phjphj676/moon-online-models` is a native MoonBit toolkit for applications
-that learn from events continuously: CTR/risk scoring, device telemetry,
-incremental forecasting, ranking, feature streams, and model monitoring. It
-is the acceptance version of the August 2026 MoonBit Hackathon project.
+`moon-online-models` is a native MoonBit toolkit for machine learning on
+streaming data. It provides online models, incremental feature processing,
+evaluation metrics, monitoring utilities, and deployment primitives for use
+cases such as CTR prediction, risk scoring, device telemetry, ranking, and
+real-time forecasting.
 
-## What is included
+The library is designed for event-by-event updates, bounded state, explicit
+validation, deterministic experiments, and compilation to MoonBit-supported
+targets.
 
-- Dense online learners: RLS, SGD/FTRL logistic regression, Adagrad, ridge,
-  Huber, quantile, softmax, Naive Bayes, k-means, kernels, PCA, factorization,
-  tree stumps, ensembles, and time-series models.
-- Sparse and streaming data: sparse vectors, hashing, CSV parsing, categorical
-  encoding, feature crosses, online joins, reservoirs, bootstrapping, and
-  schema-checked feature storage.
-- Evaluation and safety: exact and histogram AUC, calibration, regression and
-  ranking metrics, conformal intervals, drift detectors, fairness gaps,
-  cost-sensitive thresholds, validation, gradient/prediction guards.
-- Operations: model snapshots and checksums, registry and deployment state
-  transitions, canary experiments, serving batchers, SLO/error budgets,
-  alerts, audit trails, data lineage, privacy budgets, and reproducibility
-  manifests.
+## Core capabilities
 
-The implementation is deliberately dependency-light: the root package only
-uses `moonbitlang/core/math` and `moonbitlang/core/json`. Public state is
-bounded where a stream can grow without limit; callers can inspect counters,
-reset state, and reject malformed dimensions at the boundary.
+### Online learning
 
-## Install
+- RLS, SGD/FTRL logistic regression, Adagrad, ridge, Huber, and quantile
+  regression.
+- Softmax regression, Gaussian and Bernoulli Naive Bayes, online k-means,
+  kernel models, PCA, factorization, tree stumps, ensembles, and time-series
+  models.
+
+### Streaming data and features
+
+- Dense and sparse vectors with dimension-safe operations.
+- Feature hashing, categorical encoding, CSV parsing, feature crosses, and
+  polynomial features.
+- Online joins, rolling windows, reservoirs, stratified sampling, bootstrap
+  counters, schema validation, and bounded feature storage.
+
+### Evaluation and reliability
+
+- Exact and histogram AUC, calibration, regression, ranking, CTR, and
+  confusion-matrix metrics.
+- Conformal intervals, drift detection, fairness diagnostics,
+  cost-sensitive thresholds, gradient guards, and prediction guards.
+- Snapshots with checksums, model registries, deployment state transitions,
+  canary experiments, serving batchers, alerts, error budgets, audit trails,
+  data lineage, privacy budgets, and reproducibility manifests.
+
+## Quick start
+
+Add the package to a MoonBit project:
 
 ```bash
 moon add phjphj676/moon-online-models
 ```
 
-## Minimal example
+Create and update a dense online classifier:
 
 ```mbt nocheck
 let model = @moon-online-models.AdagradLogisticRegression::new(
@@ -44,7 +58,7 @@ model.update([0.0, 1.0, -0.2], 0.0)
 let probability = model.predict([1.0, 0.0, 0.2])
 ```
 
-For sparse CTR-style features:
+Use sparse hashed features for high-cardinality event data:
 
 ```mbt nocheck
 let hasher = @moon-online-models.FeatureHasher::new(1_000_000)
@@ -54,32 +68,79 @@ model.update(features, 1.0)
 let probability = model.predict(features)
 ```
 
-## Verification
+## CLI and reproducible commands
 
-Run the same checks locally that the repository CI runs:
+The repository includes a native benchmark command under `cmd/benchmark` and
+a PowerShell wrapper under `benchmarks/run.ps1`.
 
 ```bash
 moon version --all
 moon update
 moon check --target all
 moon test --target all
+moon run --target native cmd/benchmark
+```
+
+On Windows, the wrapper records the benchmark wall-clock time:
+
+```powershell
+.\benchmarks\run.ps1
+```
+
+Formatting and generated-interface checks:
+
+```bash
 moon fmt && git diff --exit-code
 moon info && git diff --exit-code
 ```
 
-The local wasm-gc test suite contains 16 boundary and behavior scenarios;
-the native benchmark trains 20,000 deterministic events and records its
-measured output in [`benchmarks/RESULTS.md`](benchmarks/RESULTS.md). Re-run
-it with `benchmarks/run.ps1` on the acceptance machine.
+## Architecture
 
-## Package and repository
+```text
+moon-online-models/
+├── *.mbt                       Core models and streaming primitives
+├── extended_models_test.mbt    Boundary and behavior coverage
+├── cmd/benchmark/              Native reproducible benchmark command
+├── benchmarks/                 Runner, methodology, and measured results
+└── .github/workflows/          Cross-platform checks and package publishing
+```
+
+The root package is dependency-light and uses MoonBit core packages for math
+and JSON support. Algorithms expose explicit counters, reset operations, and
+dimension-safe boundaries so they can be embedded in long-running streams.
+
+## Benchmark
+
+The benchmark trains an `AdagradLogisticRegression` model on 20,000
+deterministic events and reports update count, exact AUC, final weight norm,
+and a stable weight checksum. The latest measured reference is maintained in
+[`benchmarks/RESULTS.md`](benchmarks/RESULTS.md); elapsed time is hardware- and
+runtime-dependent.
+
+## Tests
+
+The black-box suite covers empty inputs, dimension mismatches, out-of-range
+indices, non-finite values, sparse features, CSV quoting, metric degeneracy,
+bounded capacities, drift detection, feature storage, serving, deployment,
+audit logging, and cost-sensitive decisions.
+
+Run all configured targets with:
+
+```bash
+moon test --target all
+```
+
+## CI
+
+GitHub Actions installs the current stable MoonBit toolchain and checks
+Ubuntu, macOS, and Windows. Each job runs `moon version --all`, `moon update`,
+`moon check --target all`, `moon test --target all`, `moon fmt`, and `moon info`.
+The publishing workflow is manual and runs the same prepublish checks before
+calling `moon publish`.
+
+## Package and license
 
 - Package: `phjphj676/moon-online-models@0.2.0`
 - GitHub: <https://github.com/phjphj676/moon-online-models>
-- GitLink mirror: <https://www.gitlink.org.cn/phjphj676/moon-online-models>
-- Default branch: `master`
+- GitLink: <https://www.gitlink.org.cn/phjphj676/moon-online-models>
 - License: Apache-2.0; see [`LICENSE`](LICENSE).
-- The project proposal and acceptance notes are retained in [`申报书.md`](申报书.md).
-
-The code is original MoonBit implementation authored by the repository owner.
-No generated build directory or credentials are part of the package.
